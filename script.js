@@ -245,14 +245,8 @@ function rgbToHex(r, g, b) {
 //     kmeans();
 // }
 
-const kMeans = (data, k = 5) => {
-    const cent = [
-        [0, 0, 0],
-        [51, 51, 51],
-        [105, 105, 105],
-        [156, 156, 156],
-        [255, 255, 255]
-    ];
+const kMeans = (data, k = 10) => {
+    const cent = data.slice(0, k);
     const distances = Array.from({ length: data.length }, () =>
         Array.from({ length: k }, () => 0)
     );
@@ -297,7 +291,7 @@ const kMeans = (data, k = 5) => {
     return centroids;
 };
 const genPalette = (c) => {
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 10; i++) {
         console.log(c[i][0])
         var regexNum = /^\d+$/;
         if (regexNum.test(c[i][0])) {
