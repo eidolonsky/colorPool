@@ -86,10 +86,11 @@ canvas {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
+    padding-top: 7.5px;
 }
 
 .palette-box {
-    min-width: 5px;
     height: 50px;
-    width: 20%;
+    width: 100%;
+    border: 2.5px groove;
 }

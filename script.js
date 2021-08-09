@@ -52,6 +52,7 @@ function fileOnload(e) {
         $("#palette-container").empty()
         console.log(data)
         kMeans(data)
+        genPalette(centroids)
     });
 }
 
@@ -88,10 +89,7 @@ function rgbToHex(r, g, b) {
 //         makeAssignments();
 //         run()
 //         console.log(colorArr.toString())
-//         for (var i = 0; i < 5; i++) {
-//             var hex = ("000000" + rgbToHex(colorArr[i][0], colorArr[i][1], colorArr[i][2])).slice(-6)
-//             $("#palette-container").append('<div class="palette-box" style="background-color:' + '#' + hex + '"/></div>')
-//         }
+
 //     }
 
 //     function getDataRanges(extremes) {
@@ -248,9 +246,13 @@ function rgbToHex(r, g, b) {
 // }
 
 const kMeans = (data, k = 5) => {
-
-    const cent = data.slice(0, k);
-    console.log(cent)
+    const cent = [
+        [0, 0, 0],
+        [51, 51, 51],
+        [105, 105, 105],
+        [156, 156, 156],
+        [255, 255, 255]
+    ];
     const distances = Array.from({ length: data.length }, () =>
         Array.from({ length: k }, () => 0)
     );
@@ -276,12 +278,15 @@ const kMeans = (data, k = 5) => {
             const size = data.reduce((acc, _, d) => {
                 if (classes[d] === c) {
                     acc++;
-                    for (let i in data[0]) centroids[c][i] += data[d][i];
+                    for (let i in data[0]) {
+                        centroids[c][i] += data[d][i]
+                    };
                 }
                 return acc;
             }, 0);
+            console.log(size)
             for (let i in data[0]) {
-                centroids[c][i] = Math.round(Number(centroids[c][i] / size).toFixed(2));
+                centroids[c][i] = Math.round(Number(centroids[c][i] / size));
             }
         }
 
@@ -289,6 +294,13 @@ const kMeans = (data, k = 5) => {
     centroids.forEach(x => x > 255 ? 255 : x)
         // document.write(centroids[0] + '</br>' + centroids)
     console.log(centroids)
-    console.log(classes)
-
 };
+const genPalette = (c) => {
+    for (var i = 0; i < 5; i++) {
+        console.log(c[i][0])
+        if (/^\d+$/.test(c[i][0])) {
+            var hex = ("000000" + rgbToHex(c[i][0], c[i][1], c[i][2])).slice(-6)
+            $("#palette-container").append('<div class="palette-box" style="background-color:' + '#' + hex + '; border-color:' + '#' + hex + 30 + ';"/></div>')
+        }
+    }
+}
