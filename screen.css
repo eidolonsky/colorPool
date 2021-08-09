@@ -92,5 +92,5 @@ canvas {
 .palette-box {
     height: 50px;
     width: 100%;
-    border: 2.5px groove;
+    border: 2.5px groove rgba(245, 245, 245, 0.3);
 }
