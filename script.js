@@ -1,19 +1,20 @@
-var centroids = []
-    // var data = [];
+var centroids = [],
+    data = [];
 $("#file-input").change(function(e) {
     var file = e.target.files[0]
     var reader = new FileReader();
     reader.onload = fileOnload;
     reader.readAsDataURL(file);
-    // console.log('d1: ' + fileOnload())
+    // console.log('d1: ')
+    // console.log(data)
     // kMeans(data)
+    // genPalette(centroids)
 });
 
 var canvas = $("#canvas")[0];
 var context = canvas.getContext("2d");
 
 function fileOnload(e) {
-
     var $img = $("<img>", { src: e.target.result });
     $img.on("load", function() {
         var w, h, csize = 500;
@@ -31,13 +32,11 @@ function fileOnload(e) {
         var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
         var oData = imgData.data;
         console.log(oData.slice(0, 3))
-        console.log(typeof oData.slice(0, 3))
-        var data = [];
+        data = [];
         for (var i = 0; i < oData.length; i = i + 4) {
             data.push(oData.slice(i, i + 3))
         }
         console.log('d0: ' + data[0])
-        console.log(typeof data[0])
         $("#canvas").on("click", function(e) {
             var pos = findPos(this);
             var x = e.pageX - pos.x;
@@ -54,6 +53,7 @@ function fileOnload(e) {
         kMeans(data)
         genPalette(centroids)
     });
+    return data;
 }
 
 function findPos(obj) {
@@ -294,11 +294,13 @@ const kMeans = (data, k = 5) => {
     centroids.forEach(x => x > 255 ? 255 : x)
         // document.write(centroids[0] + '</br>' + centroids)
     console.log(centroids)
+    return centroids;
 };
 const genPalette = (c) => {
     for (var i = 0; i < 5; i++) {
         console.log(c[i][0])
-        if (/^\d+$/.test(c[i][0])) {
+        var regexNum = /^\d+$/;
+        if (regexNum.test(c[i][0])) {
             var hex = ("000000" + rgbToHex(c[i][0], c[i][1], c[i][2])).slice(-6)
             $("#palette-container").append('<div class="palette-box" style="background-color:' + '#' + hex + '; border-color:' + '#' + hex + 30 + ';"/></div>')
         }
