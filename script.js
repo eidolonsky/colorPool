@@ -1,4 +1,4 @@
-var centroids = [],
+var
     data = [];
 $("#file-input").change(function(e) {
     $("#palette-container").empty()
@@ -83,15 +83,15 @@ function rgbToHex(r, g, b) {
 }
 
 const kMeans = (data, k = 5) => {
-    // const cent = data.slice(0, k);
-    const cent = [
-        [0, 0, 0],
-        [51, 51, 51],
-        [102, 102, 102],
-        [153, 153, 153],
-        [204, 204, 204],
-        [255, 255, 255]
-    ]
+    const centroids = data.slice(0, k);
+    // const mean = [
+    //     [0, 0, 0],
+    //     [51, 51, 51],
+    //     [102, 102, 102],
+    //     [153, 153, 153],
+    //     [204, 204, 204],
+    //     [255, 255, 255]
+    // ]
     const distances = Array.from({ length: data.length }, () =>
         Array.from({ length: k }, () => 0)
     );
@@ -104,7 +104,7 @@ const kMeans = (data, k = 5) => {
         for (let d in data) {
             for (let c = 0; c < k; c++) {
                 distances[d][c] = Math.hypot(
-                    ...Object.keys(data[0]).map(key => data[d][key] - cent[c][key])
+                    ...Object.keys(data[0]).map(key => data[d][key] - centroids[c][key])
                 );
             }
             const m = distances[d].indexOf(Math.min(...distances[d]));
@@ -125,8 +125,10 @@ const kMeans = (data, k = 5) => {
                 return acc;
             }, 0);
 
+
             for (let i in data[0]) {
                 centroids[c][i] = Math.round(Number(centroids[c][i] / size));
+                console.log(centroids[c][i])
             }
         }
 
