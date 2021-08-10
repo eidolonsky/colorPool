@@ -6,6 +6,7 @@
 - magnifying glass
 - drop to upload image
 - Class
+- Promise
 - 3d chart for pixel distribution of RGB space
 - ~~optimize K means algorithm~~
 
