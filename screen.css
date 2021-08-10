@@ -1,5 +1,5 @@
 * {
-    font-family: Arial;
+    font-family: "Gill Sans", sans-serif;
 }
 
 .container,
@@ -93,4 +93,11 @@ canvas {
     height: 50px;
     width: 100%;
     border: 2.5px groove rgba(245, 245, 245, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    text-shadow: -1px 0 rgb(0, 0, 0, .5), 0 1px rgb(0, 0, 0, .5), 1px 0 rgb(0, 0, 0, .5), 0 -1px rgb(0, 0, 0, .5);
 }
