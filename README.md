@@ -8,6 +8,7 @@
 - Class / ~~Promise~~
 - 3d chart for pixel distribution of RGB space
 - optimize K means algorithm
+- loading spin
 
 ## Reference
 https://burakkanber.com/blog/machine-learning-k-means-clustering-in-javascript-part-1/
