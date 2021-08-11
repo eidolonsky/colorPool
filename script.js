@@ -1,12 +1,10 @@
-var
-    data = [];
+var centroids = [];
 $("#file-input").change(function(e) {
     $("#palette-container").empty()
     var file = e.target.files[0]
     var reader = new FileReader();
     reader.onload = (e) => {
         fileOnload(e).then((d) => {
-
             console.log(d)
             kMeans(d)
             genPalette(centroids)
@@ -38,12 +36,11 @@ const fileOnload = (e) => {
                 var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
                 var oData = imgData.data;
                 console.log(oData.slice(0, 3))
-                data = [];
+                var data = [];
                 for (var i = 0; i < oData.length; i = i + 4) {
                     data.push(oData.slice(i, i + 3))
                 }
 
-                console.log(data)
                 setTimeout(() => {
                     resolve(data)
                 }, 0)
@@ -83,15 +80,17 @@ function rgbToHex(r, g, b) {
 }
 
 const kMeans = (data, k = 5) => {
-    const centroids = data.slice(0, k);
-    // const mean = [
-    //     [0, 0, 0],
-    //     [51, 51, 51],
-    //     [102, 102, 102],
-    //     [153, 153, 153],
-    //     [204, 204, 204],
-    //     [255, 255, 255]
-    // ]
+    // sort color according to hue
+    let l = data.length;
+    let sData = sortRGB(data)
+    const cent = [
+        sData[l / 20],
+        sData[l * 3 / 10],
+        sData[l / 2],
+        sData[l * 7 / 10],
+        sData[l * 9 / 10]
+    ]
+
     const distances = Array.from({ length: data.length }, () =>
         Array.from({ length: k }, () => 0)
     );
@@ -104,7 +103,7 @@ const kMeans = (data, k = 5) => {
         for (let d in data) {
             for (let c = 0; c < k; c++) {
                 distances[d][c] = Math.hypot(
-                    ...Object.keys(data[0]).map(key => data[d][key] - centroids[c][key])
+                    ...Object.keys(data[0]).map(key => data[d][key] - cent[c][key])
                 );
             }
             const m = distances[d].indexOf(Math.min(...distances[d]));
@@ -120,11 +119,11 @@ const kMeans = (data, k = 5) => {
                     acc++;
                     for (let i in data[0]) {
                         centroids[c][i] += data[d][i]
+
                     };
                 }
                 return acc;
             }, 0);
-
 
             for (let i in data[0]) {
                 centroids[c][i] = Math.round(Number(centroids[c][i] / size));
@@ -146,4 +145,43 @@ const genPalette = (c) => {
             $("#palette-container").append('<div class="palette-box" style="background-color:' + '#' + hex + '; border-color:' + '#' + hex + 30 + ';"/>' + '#' + hex.toUpperCase() + '</div>')
         }
     }
+}
+
+const rgbToHsl = (c) => {
+    var r = c[0] / 255,
+        g = c[1] / 255,
+        b = c[2] / 255;
+    var max = Math.max(r, g, b),
+        min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if (max == min) {
+        h = s = 0; // achromatic
+    } else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+        h /= 6;
+    }
+    return new Array(h * 360, s * 100, l * 100);
+}
+
+const sortRGB = (d) => {
+    return d.map(function(c, i) {
+        return { color: rgbToHsl(c), index: i };
+    }).sort(function(c1, c2) {
+        return c1.color[0] - c2.color[0];
+    }).map(function(t) {
+        return d[t.index];
+    });
 }
