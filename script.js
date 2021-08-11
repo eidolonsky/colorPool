@@ -80,16 +80,13 @@ function rgbToHex(r, g, b) {
 }
 
 const kMeans = (data, k = 5) => {
-    // sort color according to hue
     let l = data.length;
     let sData = sortRGB(data)
-    const cent = [
-        sData[l / 20],
-        sData[l * 3 / 10],
-        sData[l / 2],
-        sData[l * 7 / 10],
-        sData[l * 9 / 10]
-    ]
+    let cent = [];
+    for (var i = 0; i < k; i++) {
+        cent.push(sData[(l * i * 2 + l) / k / 2])
+    }
+    console.log(cent)
 
     const distances = Array.from({ length: data.length }, () =>
         Array.from({ length: k }, () => 0)

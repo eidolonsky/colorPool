@@ -16,8 +16,8 @@ body {
     padding: 25px;
     margin: 20px;
     border-radius: 12px;
-    background: linear-gradient(145deg, #a4c2d5, #c3e7fe);
-    box-shadow: 15px 15px 20px #99b5c750, -15px -15px 20px #b9f9ff70;
+    background: #ffffff;
+    box-shadow: 15px 15px 20px #72727227, -15px -15px 20px #6d6d6d21;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,6 +90,8 @@ canvas {
 }
 
 .palette-box {
+    margin: 0 1px;
+    padding: 0 5px;
     height: 50px;
     width: 100%;
     border: 2.5px groove rgba(245, 245, 245, 0.3);
@@ -99,5 +101,5 @@ canvas {
     color: white;
     font-weight: lighter;
     letter-spacing: 2px;
-    text-shadow: -1px 0 rgb(0, 0, 0, .5), 0 1px rgb(0, 0, 0, .5), 1px 0 rgb(0, 0, 0, .5), 0 -1px rgb(0, 0, 0, .5);
+    text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
 }
