@@ -13,6 +13,12 @@ body {
 }
 
 .canvas-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.canvas {
     padding: 25px;
     margin: 20px;
     border-radius: 12px;
@@ -24,6 +30,11 @@ body {
     max-width: 100%;
     max-height: 100%;
     flex-direction: column;
+}
+
+#chart {
+    width: 300px;
+    height: 157.5px;
 }
 
 input {
@@ -82,7 +93,7 @@ canvas {
     border: 1px solid rgba(99, 87, 87, 0.25);
 }
 
-#palette-container {
+#palette  {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;

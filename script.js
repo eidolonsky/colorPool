@@ -21,7 +21,7 @@ const fileOnload = (e) => {
         if (e) {
             var $img = $("<img>", { src: e.target.result });
             $img.on("load", function() {
-                var w, h, csize = 500;
+                var w, h, csize = 300;
 
                 if (this.naturalWidth / this.naturalHeight >= 1) {
                     w = csize;
@@ -139,7 +139,7 @@ const genPalette = (c) => {
         var regexNum = /^\d+$/;
         if (regexNum.test(c[i][0])) {
             var hex = ("000000" + rgbToHex(c[i][0], c[i][1], c[i][2])).slice(-6)
-            $("#palette-container").append('<div class="palette-box" style="background-color:' + '#' + hex + '; border-color:' + '#' + hex + 30 + ';"/>' + '#' + hex.toUpperCase() + '</div>')
+            $("#palette").append('<div class="palette-box" style="background-color:' + '#' + hex + '; border-color:' + '#' + hex + 30 + ';"/>' + '#' + hex.toUpperCase() + '</div>')
         }
     }
 }
