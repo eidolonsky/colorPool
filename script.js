@@ -1,6 +1,6 @@
 var centroids = [];
 $("#file-input").change(function(e) {
-    $("#palette-container").empty()
+    $("#palette").empty()
     var file = e.target.files[0]
     var reader = new FileReader();
     reader.onload = (e) => {
