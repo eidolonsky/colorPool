@@ -5,7 +5,7 @@ $("#file-input").change(function(e) {
     var reader = new FileReader();
     reader.onload = (e) => {
         fileOnload(e).then((d) => {
-            console.log(d)
+            // console.log(d)
             kMeans(d)
             genPalette(centroids)
         })
@@ -21,7 +21,7 @@ const fileOnload = (e) => {
         if (e) {
             var $img = $("<img>", { src: e.target.result });
             $img.on("load", function() {
-                var w, h, csize = 300;
+                var w, h, csize = 500;
 
                 if (this.naturalWidth / this.naturalHeight >= 1) {
                     w = csize;
@@ -35,7 +35,7 @@ const fileOnload = (e) => {
                 context.drawImage(this, 0, 0, w, h);
                 var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
                 var oData = imgData.data;
-                console.log(oData.slice(0, 3))
+                // console.log(oData.slice(0, 3))
                 var data = [];
                 for (var i = 0; i < oData.length; i = i + 4) {
                     data.push(oData.slice(i, i + 3))
@@ -86,7 +86,7 @@ const kMeans = (data, k = 5) => {
     for (var i = 0; i < k; i++) {
         cent.push(sData[(l * i * 2 + l) / k / 2])
     }
-    console.log(cent)
+    // console.log(cent)
 
     const distances = Array.from({ length: data.length }, () =>
         Array.from({ length: k }, () => 0)
@@ -124,18 +124,18 @@ const kMeans = (data, k = 5) => {
 
             for (let i in data[0]) {
                 centroids[c][i] = Math.round(Number(centroids[c][i] / size));
-                console.log(centroids[c][i])
+                // console.log(centroids[c][i])
             }
         }
 
     }
     centroids.forEach(x => x > 255 ? 255 : x)
-    console.log(centroids)
+    // console.log(centroids)
     return centroids;
 };
 const genPalette = (c) => {
     for (var i = 0; i < 5; i++) {
-        console.log(c[i][0])
+        // console.log(c[i][0])
         var regexNum = /^\d+$/;
         if (regexNum.test(c[i][0])) {
             var hex = ("000000" + rgbToHex(c[i][0], c[i][1], c[i][2])).slice(-6)
