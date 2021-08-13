@@ -92,7 +92,7 @@ canvas {
     border: 1px solid rgba(99, 87, 87, 0.25);
 }
 
-#palette  {
+#palette {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -112,4 +112,8 @@ canvas {
     font-weight: lighter;
     letter-spacing: 2px;
     text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
+}
+
+#zoom {
+    position: fixed;
 }

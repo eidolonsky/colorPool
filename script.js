@@ -130,7 +130,7 @@ const kMeans = (data, k = 5) => {
 
     }
     centroids.forEach(x => x > 255 ? 255 : x)
-    // console.log(centroids)
+        // console.log(centroids)
     return centroids;
 };
 const genPalette = (c) => {
