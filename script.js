@@ -53,6 +53,8 @@ const fileOnload = (e) => {
 
                 $("#canvas").click(function (e) {
                     let pos = findPos(this);
+                    $("#test").empty()
+                    $("#test").html(findPos(this).x + "," + findPos(this).y)
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
 
@@ -61,6 +63,7 @@ const fileOnload = (e) => {
                     let hex = (
                         "000000" + rgbToHex(oData[i], oData[i + 1], oData[i + 2])
                     ).slice(-6);
+                    $("#image").css("background-color", "#" + hex)
                     $("#output")
                         .html(
                             "<p>HEX: #" +
@@ -78,18 +81,24 @@ const fileOnload = (e) => {
                 });
 
                 $("#canvas").mousemove(function (e) {
-                    let zSize = 150;
+                    let zSize = 100;
                     zoom.width = zSize;
                     zoom.height = zSize;
 
-                    let pos = findPos(this);
+                    let centerPoint = {},
+                        originalRadius = 50,
+                        originalRectangle = {},
+                        scale = 2,
+                        scaleZoomRectangle;
 
                     zctx.clearRect(0, 0, zctx.width, zctx.height);
-                    zoom.style.left = pos.x + 10 + "px";
-                    zoom.style.top = pos.y + 10 + "px";
+
                     zoom.style.display = "block";
 
-                    zctx.drawImage(this, e.clientX * (img.width / 800), e.clientY * (img.height / 800),100,50, 0, 0, 300, 150)
+                    zctx.beginPath();
+                    zctx.arc(50, 50, originalRadius, 0, Math.PI * 2, false);
+                    zctx.clip();
+                    zctx.drawImage(this, 0, 0, 50, 50, e.pageX, e.pageY, 100, 100)
                 });
                 $("#canvas").on("mouseout", function (e) {
                     zoom.style.display = "none";
@@ -98,6 +107,8 @@ const fileOnload = (e) => {
         } else reject("Image Error");
     });
 };
+
+
 
 const findPos = (obj) => {
     let curleft = 0,
@@ -109,7 +120,6 @@ const findPos = (obj) => {
         } while ((obj = obj.offsetParent));
         return { x: curleft, y: curtop };
     }
-    return undefined;
 };
 
 const rgbToHex = (r, g, b) => {
