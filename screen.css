@@ -16,16 +16,21 @@ body {
     flex-flow: row nowrap;
     align-items: center;
 }
-
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+}
 .canvas {
     padding: 25px;
     margin: 20px;
     border-radius: 12px;
     background: #ffffff;
     box-shadow: 15px 15px 20px #72727227, -15px -15px 20px #6d6d6d21;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     max-width: 100%;
     max-height: 100%;
     flex-direction: column;
@@ -42,17 +47,14 @@ input {
 
 label {
     z-index: 5;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    background-color: steelblue;
+    background-color: rgb(96, 150, 221);
     border-radius: 10px;
-    border: 4px double #cccccc;
-    color: #eeeeee;
+    border: 15px solid rgba(99, 87, 87, 0.3);
+    color: #ffffff;
     padding: 10px;
     margin: 10px;
-    width: 128px;
-    height: auto;
+    width: 130px;
+    height: 30px;
     max-height: 50px;
     transition: all 0.5s;
     cursor: pointer;
@@ -72,24 +74,16 @@ canvas {
     text-align: left;
     z-index: 5;
     font-size: 12px;
+    font-weight: bold;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid rgba(99, 87, 87, 0.25);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 134px;
-    height: 47px;
-}
-
-#output p {
-    margin: 0;
+    background-color: rgba(250, 235, 215, 0.3);
+    border: 15px solid rgba(99, 87, 87, 0.3);
+    width: 130px;
     height: 30px;
-    width: 117px;
-    background-color: #ffffff;
-    padding: 7.5px;
-    border-radius: 8px;
-    border: 1px solid rgba(99, 87, 87, 0.25);
+}
+#output * {
+    font-size: 13px;
 }
 
 #palette {
@@ -105,9 +99,6 @@ canvas {
     height: 50px;
     width: 100%;
     border: 2.5px groove rgba(245, 245, 245, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: white;
     font-weight: lighter;
     letter-spacing: 2px;

@@ -1,27 +1,31 @@
-var centroids = [];
-$("#file-input").change(function(e) {
-    $("#palette").empty()
-    var file = e.target.files[0]
-    var reader = new FileReader();
+let centroids = [];
+$("#file-input").change(function (e) {
+    $("#palette").empty();
+    let file = e.target.files[0];
+    let reader = new FileReader();
     reader.onload = (e) => {
         fileOnload(e).then((d) => {
             // console.log(d)
-            kMeans(d)
-            genPalette(centroids)
-        })
+            kMeans(d);
+            genPalette(centroids);
+        });
     };
     reader.readAsDataURL(file);
 });
 
-var canvas = $("#canvas")[0];
-var context = canvas.getContext("2d");
+let canvas = $("#canvas")[0],
+    zoom = $("#zoom")[0],
+    ctx = canvas.getContext("2d"),
+    zctx = zoom.getContext("2d");
 
 const fileOnload = (e) => {
     return new Promise((resolve, reject) => {
         if (e) {
-            var $img = $("<img>", { src: e.target.result });
-            $img.on("load", function() {
-                var w, h, csize = 500;
+            let $img = $("<img>", { src: e.target.result });
+            $img.on("load", function () {
+                let w,
+                    h,
+                    csize = 450;
 
                 if (this.naturalWidth / this.naturalHeight >= 1) {
                     w = csize;
@@ -32,37 +36,71 @@ const fileOnload = (e) => {
                 }
                 canvas.width = w;
                 canvas.height = h;
-                context.drawImage(this, 0, 0, w, h);
-                var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
-                var oData = imgData.data;
+                ctx.drawImage(this, 0, 0, w, h);
+
+                let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                let oData = imgData.data;
+
                 // console.log(oData.slice(0, 3))
-                var data = [];
-                for (var i = 0; i < oData.length; i = i + 4) {
-                    data.push(oData.slice(i, i + 3))
+                let data = [];
+                for (let i = 0; i < oData.length; i = i + 4) {
+                    data.push(oData.slice(i, i + 3));
                 }
 
                 setTimeout(() => {
-                    resolve(data)
-                }, 0)
+                    resolve(data);
+                }, 0);
 
-
-                $("#canvas").on("click", function(e) {
-                    var pos = findPos(this);
-                    var x = e.pageX - pos.x;
-                    var y = e.pageY - pos.y;
+                $("#canvas").click(function (e) {
+                    let pos = findPos(this);
+                    let x = e.pageX - pos.x;
+                    let y = e.pageY - pos.y;
 
                     // show color in hex & rgb
-                    var i = (y * imgData.width + x) * 4
-                    var hex = ("000000" + rgbToHex(oData[i], oData[i + 1], oData[i + 2])).slice(-6)
-                    $('#output').html("<p>HEX: #" + hex.toUpperCase() + "</br>" + "RGB: " + oData[i] + "," + oData[i + 1] + "," + oData[i + 2] + "</p>").css("background-color", "#" + hex)
+                    let i = (y * imgData.width + x) * 4;
+                    let hex = (
+                        "000000" + rgbToHex(oData[i], oData[i + 1], oData[i + 2])
+                    ).slice(-6);
+                    $("#output")
+                        .html(
+                            "<p>HEX: #" +
+                            hex.toUpperCase() +
+                            "</br>" +
+                            "RGB: " +
+                            oData[i] +
+                            "," +
+                            oData[i + 1] +
+                            "," +
+                            oData[i + 2] +
+                            "</p>"
+                        )
+                        .css("border-color", "#" + hex);
+                });
+
+                $("#canvas").mousemove(function (e) {
+                    let zSize = 150;
+                    zoom.width = zSize;
+                    zoom.height = zSize;
+
+                    let pos = findPos(this);
+
+                    zctx.clearRect(0, 0, zctx.width, zctx.height);
+                    zoom.style.left = pos.x + 10 + "px";
+                    zoom.style.top = pos.y + 10 + "px";
+                    zoom.style.display = "block";
+
+                    zctx.drawImage(this, e.clientX * (img.width / 800), e.clientY * (img.height / 800),100,50, 0, 0, 300, 150)
+                });
+                $("#canvas").on("mouseout", function (e) {
+                    zoom.style.display = "none";
                 })
             });
-        } else reject('Image Error')
-    })
-}
+        } else reject("Image Error");
+    });
+};
 
-function findPos(obj) {
-    var curleft = 0,
+const findPos = (obj) => {
+    let curleft = 0,
         curtop = 0;
     if (obj.offsetParent) {
         do {
@@ -72,19 +110,19 @@ function findPos(obj) {
         return { x: curleft, y: curtop };
     }
     return undefined;
-}
+};
 
-function rgbToHex(r, g, b) {
+const rgbToHex = (r, g, b) => {
     if (r > 255 || g > 255 || b > 255) throw "Invalid color component";
     return ((r << 16) | (g << 8) | b).toString(16);
-}
+};
 
 const kMeans = (data, k = 5) => {
     let l = data.length;
-    let sData = sortRGB(data)
+    let sData = sortRGB(data);
     let cent = [];
-    for (var i = 0; i < k; i++) {
-        cent.push(sData[(l * i * 2 + l) / k / 2])
+    for (let i = 0; i < k; i++) {
+        cent.push(sData[(l * i * 2 + l) / k / 2]);
     }
     // console.log(cent)
 
@@ -100,7 +138,7 @@ const kMeans = (data, k = 5) => {
         for (let d in data) {
             for (let c = 0; c < k; c++) {
                 distances[d][c] = Math.hypot(
-                    ...Object.keys(data[0]).map(key => data[d][key] - cent[c][key])
+                    ...Object.keys(data[0]).map((key) => data[d][key] - cent[c][key])
                 );
             }
             const m = distances[d].indexOf(Math.min(...distances[d]));
@@ -115,9 +153,8 @@ const kMeans = (data, k = 5) => {
                 if (classes[d] === c) {
                     acc++;
                     for (let i in data[0]) {
-                        centroids[c][i] += data[d][i]
-
-                    };
+                        centroids[c][i] += data[d][i];
+                    }
                 }
                 return acc;
             }, 0);
@@ -127,35 +164,48 @@ const kMeans = (data, k = 5) => {
                 // console.log(centroids[c][i])
             }
         }
-
     }
-    centroids.forEach(x => x > 255 ? 255 : x)
-        // console.log(centroids)
+    centroids.forEach((x) => (x > 255 ? 255 : x));
+    // console.log(centroids)
     return centroids;
 };
 const genPalette = (c) => {
-    for (var i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
         // console.log(c[i][0])
-        var regexNum = /^\d+$/;
+        let regexNum = /^\d+$/;
         if (regexNum.test(c[i][0])) {
-            var hex = ("000000" + rgbToHex(c[i][0], c[i][1], c[i][2])).slice(-6)
-            $("#palette").append('<div class="palette-box" style="background-color:' + '#' + hex + '; border-color:' + '#' + hex + 30 + ';"/>' + '#' + hex.toUpperCase() + '</div>')
+            let hex = ("000000" + rgbToHex(c[i][0], c[i][1], c[i][2])).slice(-6);
+            $("#palette").append(
+                '<div class="palette-box flex" style="background-color:' +
+                "#" +
+                hex +
+                "; border-color:" +
+                "#" +
+                hex +
+                30 +
+                ';"/>' +
+                "#" +
+                hex.toUpperCase() +
+                "</div>"
+            );
         }
     }
-}
+};
 
 const rgbToHsl = (c) => {
-    var r = c[0] / 255,
+    let r = c[0] / 255,
         g = c[1] / 255,
         b = c[2] / 255;
-    var max = Math.max(r, g, b),
+    let max = Math.max(r, g, b),
         min = Math.min(r, g, b);
-    var h, s, l = (max + min) / 2;
+    let h,
+        s,
+        l = (max + min) / 2;
 
     if (max == min) {
         h = s = 0; // achromatic
     } else {
-        var d = max - min;
+        let d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
         switch (max) {
             case r:
@@ -171,14 +221,17 @@ const rgbToHsl = (c) => {
         h /= 6;
     }
     return new Array(h * 360, s * 100, l * 100);
-}
+};
 
 const sortRGB = (d) => {
-    return d.map(function(c, i) {
-        return { color: rgbToHsl(c), index: i };
-    }).sort(function(c1, c2) {
-        return c1.color[0] - c2.color[0];
-    }).map(function(t) {
-        return d[t.index];
-    });
-}
+    return d
+        .map(function (c, i) {
+            return { color: rgbToHsl(c), index: i };
+        })
+        .sort(function (c1, c2) {
+            return c1.color[0] - c2.color[0];
+        })
+        .map(function (t) {
+            return d[t.index];
+        });
+};
