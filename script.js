@@ -1,5 +1,5 @@
 let centroids = [];
-$("#file-input").change(function (e) {
+$("#file-input").change(function(e) {
     $("#palette").empty();
     let file = e.target.files[0];
     let reader = new FileReader();
@@ -22,7 +22,7 @@ const fileOnload = (e) => {
     return new Promise((resolve, reject) => {
         if (e) {
             let $img = $("<img>", { src: e.target.result });
-            $img.on("load", function () {
+            $img.on("load", function() {
                 let w,
                     h,
                     csize = 450;
@@ -51,10 +51,9 @@ const fileOnload = (e) => {
                     resolve(data);
                 }, 0);
 
-                $("#canvas").click(function (e) {
+                $("#canvas").click(function(e) {
                     let pos = findPos(this);
-                    $("#test").empty()
-                    $("#test").html(findPos(this).x + "," + findPos(this).y)
+
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
 
@@ -63,7 +62,7 @@ const fileOnload = (e) => {
                     let hex = (
                         "000000" + rgbToHex(oData[i], oData[i + 1], oData[i + 2])
                     ).slice(-6);
-                    $("#image").css("background-color", "#" + hex)
+                    // $("#image").css("background-color", "#" + hex)
                     $("#output")
                         .html(
                             "<p>HEX: #" +
@@ -80,27 +79,32 @@ const fileOnload = (e) => {
                         .css("border-color", "#" + hex);
                 });
 
-                $("#canvas").mousemove(function (e) {
+                $("#canvas").mousemove(function(e) {
+                    let pos = findPos(this);
+                    let x = e.pageX - pos.x;
+                    let y = e.pageY - pos.y;
+                    $("#test").empty()
+                    $("#test").html(x + ", " + y + "</br>" + e.clientX + ", " + e.clientY)
                     let zSize = 100;
                     zoom.width = zSize;
                     zoom.height = zSize;
 
-                    let centerPoint = {},
-                        originalRadius = 50,
-                        originalRectangle = {},
-                        scale = 2,
-                        scaleZoomRectangle;
+                    let oRadius = 50,
+                        scale = 5,
+                        oSize = 50;
 
                     zctx.clearRect(0, 0, zctx.width, zctx.height);
 
                     zoom.style.display = "block";
-
+                    zctx.save()
                     zctx.beginPath();
-                    zctx.arc(50, 50, originalRadius, 0, Math.PI * 2, false);
+                    zctx.arc(oSize, oSize, oRadius, 0, Math.PI * 2, false);
                     zctx.clip();
-                    zctx.drawImage(this, 0, 0, 50, 50, e.pageX, e.pageY, 100, 100)
+
+                    zctx.drawImage(canvas, x - oSize, y - h / w * oSize, oSize * 2, oSize * h / w * 2, 0, 0, oSize * scale, oSize * h / w / 2 * scale)
+                    zctx.restore()
                 });
-                $("#canvas").on("mouseout", function (e) {
+                $("#canvas").on("mouseout", function(e) {
                     zoom.style.display = "none";
                 })
             });
@@ -235,13 +239,13 @@ const rgbToHsl = (c) => {
 
 const sortRGB = (d) => {
     return d
-        .map(function (c, i) {
+        .map(function(c, i) {
             return { color: rgbToHsl(c), index: i };
         })
-        .sort(function (c1, c2) {
+        .sort(function(c1, c2) {
             return c1.color[0] - c2.color[0];
         })
-        .map(function (t) {
+        .map(function(t) {
             return d[t.index];
         });
 };
