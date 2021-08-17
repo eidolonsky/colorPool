@@ -1,4 +1,9 @@
-let centroids = [];
+let centroids = [],
+    cPoint = {},
+    oRadius = 100,
+    oRect = {},
+    scale = 2,
+    scaleZoom;
 $("#file-input").change(function(e) {
     $("#palette").empty();
     let file = e.target.files[0];
@@ -14,9 +19,9 @@ $("#file-input").change(function(e) {
 });
 
 let canvas = $("#canvas")[0],
-    zoom = $("#zoom")[0],
-    ctx = canvas.getContext("2d"),
-    zctx = zoom.getContext("2d");
+    // zoom = $("#zoom")[0],
+    ctx = canvas.getContext("2d");
+// zctx = zoom.getContext("2d");
 
 const fileOnload = (e) => {
     return new Promise((resolve, reject) => {
@@ -25,7 +30,8 @@ const fileOnload = (e) => {
             $img.on("load", function() {
                 let w,
                     h,
-                    csize = 450;
+                    csize = 450,
+                    img = this;
 
                 if (this.naturalWidth / this.naturalHeight >= 1) {
                     w = csize;
@@ -36,7 +42,7 @@ const fileOnload = (e) => {
                 }
                 canvas.width = w;
                 canvas.height = h;
-                ctx.drawImage(this, 0, 0, w, h);
+                ctx.drawImage(img, 0, 0, w, h);
 
                 let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 let oData = imgData.data;
@@ -83,35 +89,55 @@ const fileOnload = (e) => {
                     let pos = findPos(this);
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
-                    $("#test").empty()
-                    $("#test").html(x + ", " + y + "</br>" + e.clientX + ", " + e.clientY)
-                    let zSize = 100;
-                    zoom.width = zSize;
-                    zoom.height = zSize;
 
-                    let oRadius = 50,
-                        scale = 5,
-                        oSize = 50;
+                    cPoint = { x: x, y: y };
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, w, h);
+                    calORect(cPoint);
+                    drawZoom();
 
-                    zctx.clearRect(0, 0, zctx.width, zctx.height);
-
-                    zoom.style.display = "block";
-                    zctx.save()
-                    zctx.beginPath();
-                    zctx.arc(oSize, oSize, oRadius, 0, Math.PI * 2, false);
-                    zctx.clip();
-
-                    zctx.drawImage(canvas, x - oSize, y - h / w * oSize, oSize * 2, oSize * h / w * 2, 0, 0, oSize * scale, oSize * h / w / 2 * scale)
-                    zctx.restore()
                 });
-                $("#canvas").on("mouseout", function(e) {
-                    zoom.style.display = "none";
-                })
+                // $("#canvas").on("mouseout", function(e) {
+                //     // zoom.style.display = "none";
+                // })
             });
         } else reject("Image Error");
     });
 };
 
+const calORect = (point) => {
+    oRect.x = point.x - oRadius;
+    oRect.y = point.y - oRadius;
+    oRect.width = oRadius * 2;
+    oRect.height = oRadius * 2;
+}
+
+const drawZoom = () => {
+    scaleZoom = {
+        x: cPoint.x - oRect.width * scale / 2,
+        y: cPoint.y - oRect.height * scale / 2,
+        width: oRect.width * scale,
+        height: oRect.height * scale
+    }
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cPoint.x, cPoint.y, oRadius, 0, Math.PI * 2, false);
+    ctx.clip();
+
+    ctx.drawImage(
+        canvas,
+        oRect.x,
+        oRect.y,
+        oRect.width,
+        oRect.height,
+        scaleZoom.x,
+        scaleZoom.y,
+        scaleZoom.width,
+        scaleZoom.height
+    )
+
+    ctx.restore();
+}
 
 
 const findPos = (obj) => {
