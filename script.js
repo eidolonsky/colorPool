@@ -1,7 +1,7 @@
 import { kMeans } from "./kmeans.js"
 import { genPalette, rgbToHex } from "./palette.js"
 import { drawZoom, calORect, findPos } from "./zoom.js"
-
+import { loading } from "./loading.js"
 
 
 $("#file-input").change(function(e) {
