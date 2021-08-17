@@ -1,3 +1,0 @@
-const kmeans = (d) => {
-
-}
