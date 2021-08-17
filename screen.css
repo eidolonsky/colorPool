@@ -110,8 +110,3 @@ canvas {
     letter-spacing: 2px;
     text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
 }
-
-#zoom {
-    position: fixed;
-    border: 1px solid red;
-}
