@@ -1,17 +1,17 @@
+// http://www.zhangjikai.com/demo/html5-magnifying-glass/image.html
+
 let
-    oRadius = 55,
+    oRadius = 50,
     oRect = {},
     scale = 5,
     scaleZoom;
 
-const calORect = (point) => {
-    oRect.x = point.x - oRadius;
-    oRect.y = point.y - oRadius;
+const drawZoom = (d, ctx) => {
+    oRect.x = d.x - oRadius;
+    oRect.y = d.y - oRadius;
     oRect.width = oRadius * 2;
     oRect.height = oRadius * 2;
-}
 
-const drawZoom = (d, ctx) => {
     scaleZoom = {
         x: d.x - oRect.width * scale / 2,
         y: d.y - oRect.height * scale / 2,
@@ -38,6 +38,12 @@ const drawZoom = (d, ctx) => {
     ctx.restore();
 }
 
+const windowToCanvas = (x, y) => {
+    var bbox = canvas.getBoundingClientRect();
+    var bbox = canvas.getBoundingClientRect();
+    return {x: x - bbox.left, y: y - bbox.top}
+}
+
 const findPos = (obj) => {
     let curleft = 0,
         curtop = 0;
@@ -50,4 +56,4 @@ const findPos = (obj) => {
     }
 };
 
-export { drawZoom, calORect, findPos }
+export { drawZoom,  findPos, windowToCanvas }

@@ -1,6 +1,6 @@
 import { kMeans } from "./component/kmeans.js"
 import { genPalette, rgbToHex } from "./component/palette.js"
-import { drawZoom, calORect, findPos } from "./component/zoom.js"
+import { drawZoom,  findPos, windowToCanvas } from "./component/zoom.js"
 import { genChart } from "./component/chart.js"
 
 $("#file-input").change(function(e) {
@@ -87,11 +87,12 @@ const fileOnload = (e) => {
                     let pos = findPos(this);
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
-
-                    cPoint = { x: x, y: y };
+                    cPoint = windowToCanvas(e.clientX, e.clientY)
+                    var cPoint2 = { x: x, y: y };
+                    $("#test").html(`${cPoint.x}+${cPoint.y}+${cPoint2.x}+${cPoint2.y}`)
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(img, 0, 0, w, h);
-                    calORect(cPoint);
+                    // calORect(cPoint);
                     drawZoom(cPoint, ctx);
                 });
             });
