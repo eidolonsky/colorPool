@@ -2,17 +2,25 @@ import { kMeans } from "./component/kmeans.js"
 import { genPalette, rgbToHex } from "./component/palette.js"
 import { drawZoom, calORect, findPos } from "./component/zoom.js"
 import { loading } from "./component/loading.js"
-
+import { genChart } from "./component/chart.js"
 
 $("#file-input").change(function(e) {
     $("#palette").empty();
     let file = e.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {
-        fileOnload(e).then((d) => {
-            // console.log(d)
-            genPalette(kMeans(d));
-        });
+        loading();
+        fileOnload(e)
+            .then((d) => {
+                genPalette(kMeans(d));
+            })
+            .then(() => {
+                $("#image.loading").empty()
+            })
+            .then(genChart)
+            .then(() => {
+                $("#chart.loading").empty()
+            });
     };
     reader.readAsDataURL(file);
 });
@@ -27,7 +35,7 @@ const fileOnload = (e) => {
             $img.on("load", function() {
                 let w,
                     h,
-                    csize = 500,
+                    csize = 450,
                     img = this,
                     cPoint = {};
 
@@ -61,12 +69,10 @@ const fileOnload = (e) => {
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
 
-                    // show color in hex & rgb
                     let i = (y * imgData.width + x) * 4;
                     let hex = (
                         "000000" + rgbToHex(oData[i], oData[i + 1], oData[i + 2])
                     ).slice(-6);
-                    // $("#image").css("background-color", "#" + hex)
                     $("#output")
                         .html(
                             "<p>HEX: #" +
@@ -93,7 +99,6 @@ const fileOnload = (e) => {
                     ctx.drawImage(img, 0, 0, w, h);
                     calORect(cPoint);
                     drawZoom(cPoint, ctx);
-
                 });
             });
         } else reject("Image Error");
