@@ -1,29 +1,24 @@
 import { kMeans } from "./component/kmeans.js"
 import { genPalette, rgbToHex } from "./component/palette.js"
 import { drawZoom, calORect, findPos } from "./component/zoom.js"
-import { loading } from "./component/loading.js"
 import { genChart } from "./component/chart.js"
 
 $("#file-input").change(function(e) {
     $("#palette").empty();
+    $("#chart").hide()
     let file = e.target.files[0];
     let reader = new FileReader();
     reader.onload = (e) => {
-        loading();
         fileOnload(e)
             .then((d) => {
-                genPalette(kMeans(d));
+                genPalette(kMeans(d))
             })
-            .then(() => {
-                $("#image.loading").empty()
-            })
-            .then(genChart)
-            .then(() => {
-                $("#chart.loading").empty()
-            });
+            .then(() => { genChart(data) })
     };
     reader.readAsDataURL(file);
 });
+
+let data = [];
 
 let canvas = $("#canvas")[0],
     ctx = canvas.getContext("2d");
@@ -38,7 +33,6 @@ const fileOnload = (e) => {
                     csize = 450,
                     img = this,
                     cPoint = {};
-
                 if (this.naturalWidth / this.naturalHeight >= 1) {
                     w = csize;
                     h = (this.naturalHeight / this.naturalWidth) * csize;
@@ -54,7 +48,7 @@ const fileOnload = (e) => {
                 let oData = imgData.data;
 
                 // console.log(oData.slice(0, 3))
-                let data = [];
+
                 for (let i = 0; i < oData.length; i = i + 4) {
                     data.push(oData.slice(i, i + 3));
                 }

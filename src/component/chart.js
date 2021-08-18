@@ -1,7 +1,8 @@
-const genChart = () => {
-    setTimeout(() => {
-        $("#chart").html("chart")
-    }, 20000);
+const genChart = (d) => {
+    $("#chart")
+        .empty()
+        .show()
+        .html(`chart: ${d[0]}, ${d[d.length - 1]}`)
 }
 
 export { genChart }
