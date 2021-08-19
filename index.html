@@ -16,13 +16,14 @@
     <div class="container">
         <div class="flex-row flex">
             <input type="file" id="file-input" accept="image/*" />
-            <label for="file-input" class="flex">Upload Image</label>
+            <label for="file-input" id="label" class="flex">Click to Upload</label>
             <div id="output" class="flex">Pick Color</div>
         </div>
 
         <div class="canvas-container">
             <div id="image" class="canvas flex">
-                <canvas id="canvas"></canvas>
+                <p>Drag & Drop Here to Upload</p>
+                <canvas id="canvas" width=0 height=0></canvas>
                 <div id="palette"></div>
             </div>
             <div class="canvas flex" id="chart">

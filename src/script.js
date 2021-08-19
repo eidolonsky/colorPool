@@ -1,12 +1,47 @@
 import { kMeans } from "./component/kmeans.js"
 import { genPalette, rgbToHex } from "./component/palette.js"
-import { drawZoom,  findPos, windowToCanvas } from "./component/zoom.js"
+import { drawZoom, findPos, windowToCanvas } from "./component/zoom.js"
 import { genChart } from "./component/chart.js"
+
+
+let drag = $("#image")[0];
+
+drag.addEventListener("dragenter", (e) => {
+    e.preventDefault();
+})
+
+drag.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    $("#image")
+        .css("border-color", "#0195E6")
+        .css("background-color", "#0195E620");
+})
+
+drag.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    $("#image")
+        .css("border-color", "rgba(99, 87, 87, 0.3)")
+        .css("background-color", "#ffffff");
+})
+
+drag.addEventListener("drop", (e) => {
+    e.preventDefault();
+    $("#image")
+        .css("border-color", "rgba(99, 87, 87, 0.3)")
+        .css("background-color", "#ffffff");
+    let file = Array.from(e.dataTransfer.files)[0];
+    loadFile(file);
+})
 
 $("#file-input").change(function(e) {
     $("#palette").empty();
-    $("#chart").hide()
+    $("#chart").hide();
     let file = e.target.files[0];
+    loadFile(file);
+});
+
+const loadFile = (d) => {
+    $("#image p").hide();
     let reader = new FileReader();
     reader.onload = (e) => {
         fileOnload(e)
@@ -15,8 +50,8 @@ $("#file-input").change(function(e) {
             })
             .then(() => { genChart(data) })
     };
-    reader.readAsDataURL(file);
-});
+    reader.readAsDataURL(d);
+}
 
 let data = [];
 
@@ -48,7 +83,7 @@ const fileOnload = (e) => {
                 let oData = imgData.data;
 
                 // console.log(oData.slice(0, 3))
-
+                data = []
                 for (let i = 0; i < oData.length; i = i + 4) {
                     data.push(oData.slice(i, i + 3));
                 }
@@ -81,15 +116,16 @@ const fileOnload = (e) => {
                             "</p>"
                         )
                         .css("border-color", "#" + hex);
+                    $("#image")
+                        .css("border-color", "#" + hex);
                 });
 
                 $("#canvas").mousemove(function(e) {
                     let pos = findPos(this);
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
-                    cPoint = windowToCanvas(e.clientX, e.clientY)
-                    var cPoint2 = { x: x, y: y };
-                    $("#test").html(`${cPoint.x}+${cPoint.y}+${cPoint2.x}+${cPoint2.y}`)
+                    cPoint = windowToCanvas(e.clientX, e.clientY);
+                    // var cPoint = { x: x, y: y };
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(img, 0, 0, w, h);
                     // calORect(cPoint);

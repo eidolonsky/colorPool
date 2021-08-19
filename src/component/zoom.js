@@ -40,8 +40,7 @@ const drawZoom = (d, ctx) => {
 
 const windowToCanvas = (x, y) => {
     var bbox = canvas.getBoundingClientRect();
-    var bbox = canvas.getBoundingClientRect();
-    return {x: x - bbox.left, y: y - bbox.top}
+    return { x: x - bbox.left, y: y - bbox.top }
 }
 
 const findPos = (obj) => {
@@ -56,4 +55,4 @@ const findPos = (obj) => {
     }
 };
 
-export { drawZoom,  findPos, windowToCanvas }
+export { drawZoom, findPos, windowToCanvas }
