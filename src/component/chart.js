@@ -1,4 +1,7 @@
+import three from 'https://cdn.skypack.dev/three';
+
 const genChart = (d) => {
+
     $("#chart")
         .empty()
         .show()

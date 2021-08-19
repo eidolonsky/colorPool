@@ -3,7 +3,6 @@ import { genPalette, rgbToHex } from "./component/palette.js"
 import { drawZoom, findPos, windowToCanvas } from "./component/zoom.js"
 import { genChart } from "./component/chart.js"
 
-
 let drag = $("#image")[0];
 
 drag.addEventListener("dragenter", (e) => {
@@ -42,6 +41,9 @@ $("#file-input").change(function(e) {
 
 const loadFile = (d) => {
     $("#image p").hide();
+    $("#image")
+        .css("border-color", "rgba(99, 87, 87, 0.3)")
+        .css("background-color", "#ffffff");
     let reader = new FileReader();
     reader.onload = (e) => {
         fileOnload(e)

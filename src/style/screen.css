@@ -1,6 +1,6 @@
 * {
     font-family: "Gill Sans", sans-serif;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .container,
@@ -16,7 +16,6 @@ body {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    width: 100%;
     padding: 25px;
 }
 
@@ -37,21 +36,28 @@ body {
     border-radius: 12px;
     background: #ffffff;
     box-shadow: 15px 15px 20px #72727227, -15px -15px 20px #6d6d6d21;
-    max-width: 100%;
+    width: 100%;
     min-height: 250px;
     flex-direction: column;
-    width: 100%;
     border: 15px solid rgba(99, 87, 87, 0.3);
     transition: all 0.5s;
 }
 
-canvas {
+.canvas p:first-child {
+    font-size: 150px;
+    margin: -50px 0 -50px 0;
+    font-weight: bolder;
+    color: rgb(179, 178, 178);
+}
+
+#canvas {
     cursor: crosshair;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 #chart {
     width: 300px;
-    /* height: 157.5px; */
+    height: 100%;
     display: none;
 }
 
@@ -89,6 +95,7 @@ input {
     margin: 10px;
     width: 120px;
     height: 30px;
+    transition: all 0.5s;
 }
 
 #output * {
@@ -96,7 +103,7 @@ input {
 }
 
 #palette {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-flow: row nowrap;
     padding-top: 7.5px;
@@ -107,8 +114,8 @@ input {
     padding: 0 5px;
     height: 50px;
     width: 100%;
-    border: 2.5px groove rgba(245, 245, 245, 0.3);
     color: white;
     letter-spacing: 2px;
+    border: 3px groove rgba(54, 54, 54, 0.8);
     text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
 }
