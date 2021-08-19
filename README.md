@@ -4,7 +4,7 @@
 - ~~pick color from any pixel~~
 - ~~generate palette of five dominant colors~~
 - ~~magnifying glass~~
-- drop to upload image
+- ~~drop to upload image~~
 - ~~Promise~~
 - 3d chart for pixel distribution of RGB space
 - ~~optimize K means algorithm~~
