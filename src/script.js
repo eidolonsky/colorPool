@@ -4,6 +4,8 @@ import { drawZoom, findPos, windowToCanvas } from "./component/zoom.js"
 import { genChart } from "./component/chart.js"
 
 let drag = $("#image")[0];
+let data = [],
+    file;
 
 drag.addEventListener("dragenter", (e) => {
     e.preventDefault();
@@ -28,23 +30,18 @@ drag.addEventListener("drop", (e) => {
     $("#image")
         .css("border-color", "rgba(99, 87, 87, 0.3)")
         .css("background-color", "#ffffff");
-    let file = Array.from(e.dataTransfer.files)[0];
-    styleRestore().then(loadFile(file));
+    file = Array.from(e.dataTransfer.files)[0];
+    loadFile(file);
 })
 
 $("#file-input").change(function(e) {
-    $("#palette").empty();
-    $("#chart").hide();
-    let file = e.target.files[0];
-    styleRestore().then(loadFile(file));
+    file = e.target.files[0];
+    loadFile(file);
 });
 
 const loadFile = (d) => {
-
     let reader = new FileReader();
-
     reader.onload = (e) => {
-
         fileOnload(e)
             .then((d) => {
                 genPalette(kMeans(d))
@@ -55,7 +52,8 @@ const loadFile = (d) => {
 }
 
 const styleRestore = () => {
-    return new Promise((resolve, reject) => {
+        $("#palette").empty();
+        $("#chart").hide();
         $("#image p").hide();
         $("#image")
             .css("border-color", "rgba(99, 87, 87, 0.3)")
@@ -63,17 +61,16 @@ const styleRestore = () => {
         $("#output")
             .html("Pick Color")
             .css("border-color", "rgba(99, 87, 87, 0.3)");
-    })
 }
-
-let data = [];
 
 let canvas = $("#canvas")[0],
     ctx = canvas.getContext("2d");
 
 const fileOnload = (e) => {
+    
     return new Promise((resolve, reject) => {
         if (e) {
+            styleRestore();
             let $img = $("<img>", { src: e.target.result });
             $img.on("load", function() {
                 let w,
