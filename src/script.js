@@ -29,23 +29,22 @@ drag.addEventListener("drop", (e) => {
         .css("border-color", "rgba(99, 87, 87, 0.3)")
         .css("background-color", "#ffffff");
     let file = Array.from(e.dataTransfer.files)[0];
-    loadFile(file);
+    styleRestore().then(loadFile(file));
 })
 
 $("#file-input").change(function(e) {
     $("#palette").empty();
     $("#chart").hide();
     let file = e.target.files[0];
-    loadFile(file);
+    styleRestore().then(loadFile(file));
 });
 
 const loadFile = (d) => {
-    $("#image p").hide();
-    $("#image")
-        .css("border-color", "rgba(99, 87, 87, 0.3)")
-        .css("background-color", "#ffffff");
+
     let reader = new FileReader();
+
     reader.onload = (e) => {
+
         fileOnload(e)
             .then((d) => {
                 genPalette(kMeans(d))
@@ -53,6 +52,18 @@ const loadFile = (d) => {
             .then(() => { genChart(data) })
     };
     reader.readAsDataURL(d);
+}
+
+const styleRestore = () => {
+    return new Promise((resolve, reject) => {
+        $("#image p").hide();
+        $("#image")
+            .css("border-color", "rgba(99, 87, 87, 0.3)")
+            .css("background-color", "#ffffff");
+        $("#output")
+            .html("Pick Color")
+            .css("border-color", "rgba(99, 87, 87, 0.3)");
+    })
 }
 
 let data = [];
@@ -67,15 +78,16 @@ const fileOnload = (e) => {
             $img.on("load", function() {
                 let w,
                     h,
-                    csize = 450,
+                    cwidth = 450,
+                    cheight = 300,
                     img = this,
                     cPoint = {};
                 if (this.naturalWidth / this.naturalHeight >= 1) {
-                    w = csize;
-                    h = (this.naturalHeight / this.naturalWidth) * csize;
+                    w = cwidth;
+                    h = (this.naturalHeight / this.naturalWidth) * cwidth;
                 } else {
-                    h = csize;
-                    w = (this.naturalWidth / this.naturalHeight) * csize;
+                    h = cheight;
+                    w = (this.naturalWidth / this.naturalHeight) * cheight;
                 }
                 canvas.width = w;
                 canvas.height = h;
