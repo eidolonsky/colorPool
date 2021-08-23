@@ -1,7 +1,7 @@
 import { kMeans } from "./component/kmeans.js"
 import { genPalette, rgbToHex } from "./component/palette.js"
 import { drawZoom, findPos, windowToCanvas } from "./component/zoom.js"
-import { genChart } from "./component/chart.js"
+import { Chart } from "./component/chart/chart.js"
 
 let drag = $("#image")[0];
 let data = [],
@@ -46,28 +46,28 @@ const loadFile = (d) => {
             .then((d) => {
                 genPalette(kMeans(d))
             })
-            .then(() => { genChart(data) })
+            .then(() => { genChart() })
     };
     reader.readAsDataURL(d);
 }
 
 const styleRestore = () => {
-        $("#palette").empty();
-        $("#chart").hide();
-        $("#image p").hide();
-        $("#image")
-            .css("border-color", "rgba(99, 87, 87, 0.3)")
-            .css("background-color", "#ffffff");
-        $("#output")
-            .html("Pick Color")
-            .css("border-color", "rgba(99, 87, 87, 0.3)");
+    $("#palette").empty();
+    $("#chart").hide();
+    $("#image p").hide();
+    $("#image")
+        .css("border-color", "rgba(99, 87, 87, 0.3)")
+        .css("background-color", "#ffffff");
+    $("#output")
+        .html("Pick Color")
+        .css("border-color", "rgba(99, 87, 87, 0.3)");
 }
 
 let canvas = $("#canvas")[0],
     ctx = canvas.getContext("2d");
 
 const fileOnload = (e) => {
-    
+
     return new Promise((resolve, reject) => {
         if (e) {
             styleRestore();
@@ -75,7 +75,7 @@ const fileOnload = (e) => {
             $img.on("load", function() {
                 let w,
                     h,
-                    cwidth = 450,
+                    cwidth = 300,
                     cheight = 300,
                     img = this,
                     cPoint = {};
@@ -146,3 +146,13 @@ const fileOnload = (e) => {
         } else reject("Image Error");
     });
 };
+
+const genChart = () => {
+
+    const container = document.querySelector('#chart');
+
+    const chart = new Chart(container);
+    $("#chart").css("display", "flex")
+
+    chart.render();
+}
