@@ -18,26 +18,28 @@ let scene;
 let loop;
 
 class Chart {
-    constructor(container) {
+    constructor(container, data) {
         camera = createCamera();
         scene = createScene();
         renderer = createRenderer();
         loop = new Loop(camera, scene, renderer);
         container.append(renderer.domElement);
 
+        renderer.domElement.id = "chartCanvas";
+
         const controls = createControls(camera, renderer.domElement)
         const { ambientLight, mainLight } = createLights();
-        const meshGroup = createMeshGroup();
+        const meshGroup = createMeshGroup(data);
 
         loop.updatables.push(controls, meshGroup);
 
         scene.add(ambientLight, mainLight, meshGroup);
 
-        scene.position.set(-70, -175, 0);
+        scene.position.set(-100, -100, 0);
 
-        // scene.rotation.x = MathUtils.degToRad(-5);
-        // scene.rotation.y = MathUtils.degToRad(-5);
-        // scene.rotation.z = MathUtils.degToRad(0);
+        scene.rotation.x = MathUtils.degToRad(5);
+        scene.rotation.y = MathUtils.degToRad(0);
+        scene.rotation.z = MathUtils.degToRad(0);
 
         const resizer = new Resizer(container, camera, renderer);
     }

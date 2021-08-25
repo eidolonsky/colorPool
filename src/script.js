@@ -46,7 +46,7 @@ const loadFile = (d) => {
             .then((d) => {
                 genPalette(kMeans(d))
             })
-            .then(() => { genChart() })
+            .then(() => { genChart(data) })
     };
     reader.readAsDataURL(d);
 }
@@ -63,7 +63,9 @@ const styleRestore = () => {
         .html("Pick Color")
         .css("border-color", "rgba(99, 87, 87, 0.3)");
 
-    // $("#chart").hide();
+    if ($("#chartCanvas").length) {
+        $("#chart").empty()
+    }
 }
 
 let canvas = $("#canvas")[0],
@@ -78,8 +80,9 @@ const fileOnload = (e) => {
             $img.on("load", function() {
                 let w,
                     h,
-                    cwidth = 300,
-                    cheight = 300,
+                    cwidth = 500,
+                    cheight = 500,
+                    scale = 10,
                     img = this,
                     cPoint = {};
                 if (this.naturalWidth / this.naturalHeight >= 1) {
@@ -89,14 +92,18 @@ const fileOnload = (e) => {
                     h = cheight;
                     w = (this.naturalWidth / this.naturalHeight) * cheight;
                 }
-                canvas.width = w;
-                canvas.height = h;
-                ctx.drawImage(img, 0, 0, w, h);
+                canvas.width = w / scale;
+                canvas.height = h / scale;
+                ctx.drawImage(img, 0, 0, w / scale, h / scale);
 
                 let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 let oData = imgData.data;
 
-                // console.log(oData.slice(0, 3))
+                ctx.clearRect(0, 0, w / scale, h / scale)
+                canvas.width = w;
+                canvas.height = h;
+                ctx.drawImage(img, 0, 0, w, h)
+
                 data = []
                 for (let i = 0; i < oData.length; i = i + 4) {
                     data.push(oData.slice(i, i + 3));
@@ -150,16 +157,12 @@ const fileOnload = (e) => {
     });
 };
 
-const genChart = () => {
+const genChart = (data) => {
 
-    if ($("#chart > canvas").length > 0) {
-        let chartCanvas = $("#chart > canvas")[0];
-        let chartCtx = chartCanvas.getContext("2d");
-        chartCtx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
-    }
+
     const container = $('#chart')[0];
 
-    const chart = new Chart(container);
+    const chart = new Chart(container, data);
 
     $("#chart").css("display", "flex")
 

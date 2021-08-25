@@ -9,12 +9,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background: #b6d8ed; */
+}
+
+.container {
+    margin-top: 10px;
+    ;
 }
 
 .canvas-container {
     align-items: center;
-    padding: 25px;
+    padding: 5px;
 }
 
 .flex {
@@ -73,7 +77,7 @@ input {
     box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
     color: #ffffff;
     padding: 10px;
-    margin: 10px;
+    margin: 0 10px;
     width: 120px;
     height: 30px;
     max-height: 50px;
@@ -93,7 +97,7 @@ input {
     border: 15px solid rgba(99, 87, 87, 0.3);
     box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
     padding: 10px;
-    margin: 10px;
+    margin: 0 10px;
     width: 120px;
     height: 30px;
     transition: all 1s;
