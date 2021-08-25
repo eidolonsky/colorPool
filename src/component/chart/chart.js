@@ -37,9 +37,9 @@ class Chart {
 
         scene.position.set(0, 0, 0);
 
-        scene.rotation.x = MathUtils.degToRad(5);
-        // scene.rotation.y = MathUtils.degToRad(0);
-        // scene.rotation.z = MathUtils.degToRad(5);
+        scene.rotation.x = MathUtils.degToRad(1);
+        scene.rotation.y = MathUtils.degToRad(0);
+        scene.rotation.z = MathUtils.degToRad(0);
 
         const resizer = new Resizer(container, camera, renderer);
     }

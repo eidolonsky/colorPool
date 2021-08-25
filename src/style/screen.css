@@ -37,10 +37,10 @@ body {
     margin: 10px;
     border-radius: 12px;
     background: #ffffff;
-    box-shadow: 15px 15px 20px #72727227, -15px -15px 20px #6d6d6d21;
+    box-shadow: 10px 10px 15px #7272723a, -10px -10px 15px #6d6d6d3a;
     min-height: 250px;
     flex-direction: column;
-    border: 15px solid rgba(99, 87, 87, 0.3);
+    border: 15px solid rgb(128, 128, 128);
     transition: all 1s;
 }
 
@@ -63,7 +63,7 @@ body {
 #chart {
     height: 20%;
     display: none;
-    /* background-color: skyblue; */
+    background: -webkit-linear-gradient(top,  #5a5a5a 0%,#000000 70%, #3b3b3b 100%);
 }
 
 input {
@@ -73,7 +73,7 @@ input {
 #label {
     background-color: rgb(96, 150, 221);
     border-radius: 10px;
-    border: 15px solid rgba(99, 87, 87, 0.3);
+    border: 15px solid rgba(128, 128, 128, 0.171);
     box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
     color: #ffffff;
     padding: 10px;
@@ -94,7 +94,7 @@ input {
     z-index: 5;
     border-radius: 10px;
     background-color: rgba(250, 235, 215, 0.3);
-    border: 15px solid rgba(99, 87, 87, 0.3);
+    border: 15px solid rgb(128, 128, 128);
     box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
     padding: 10px;
     margin: 0 10px;

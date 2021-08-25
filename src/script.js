@@ -83,7 +83,7 @@ const fileOnload = (e) => {
                     h,
                     cwidth = 500,
                     cheight = 500,
-                    scale = 10,
+                    scale = 7.5,
                     img = this,
                     cPoint = {};
                 if (this.naturalWidth / this.naturalHeight >= 1) {

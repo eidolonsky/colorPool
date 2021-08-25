@@ -7,7 +7,8 @@ function createCamera() {
     //     10, // near clipping plane
     //     10000, // far clipping plane
     // );
-    const camera = new OrthographicCamera(-128, // Camera frustum left plane.
+    const camera = new OrthographicCamera(
+        -128, // Camera frustum left plane.
         128, // Camera frustum right plane.
         128, //Camera frustum top plane.
         -128, //Camera frustum bottom plane.
