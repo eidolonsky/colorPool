@@ -35,9 +35,9 @@ class Chart {
 
         scene.add(ambientLight, mainLight, meshGroup);
 
-        scene.position.set(-100, -100, 0);
+        scene.position.set(0, -100, 0);
 
-        scene.rotation.x = MathUtils.degToRad(5);
+        scene.rotation.x = MathUtils.degToRad(1);
         scene.rotation.y = MathUtils.degToRad(0);
         scene.rotation.z = MathUtils.degToRad(0);
 

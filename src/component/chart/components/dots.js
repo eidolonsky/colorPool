@@ -11,7 +11,7 @@ function createMeshGroup(data) {
 
     const group = new Group();
 
-    const geometry = new SphereBufferGeometry(1, 5, 5);
+    const geometry = new SphereBufferGeometry(1.5, 5, 5);
     geometry.center()
 
     const axes = createAxes();

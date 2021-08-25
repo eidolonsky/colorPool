@@ -65,6 +65,7 @@ const styleRestore = () => {
 
     if ($("#chartCanvas").length) {
         $("#chart").empty()
+        $("#chart").hide()
     }
 }
 
