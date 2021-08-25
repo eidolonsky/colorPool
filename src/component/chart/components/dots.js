@@ -12,10 +12,10 @@ function createMeshGroup(data) {
     const group = new Group();
 
     const geometry = new SphereBufferGeometry(1.5, 5, 5);
-    geometry.center()
+    geometry.translate(-127.5, -127.5, -127.5)
 
     const axes = createAxes();
-
+    axes.geometry.center()
     group.add(axes);
 
     let counter = 0;
@@ -40,7 +40,7 @@ function createMeshGroup(data) {
     }
     console.log(counter)
 
-    group.scale.multiplyScalar(0.5);
+    group.scale.multiplyScalar(0.75);
 
     const radiansPerSecond = MathUtils.degToRad(5);
 
