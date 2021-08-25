@@ -3,7 +3,7 @@
 let
     oRadius = 50,
     oRect = {},
-    scale = 5,
+    scale = 7.5,
     scaleZoom;
 
 const drawZoom = (d, ctx) => {

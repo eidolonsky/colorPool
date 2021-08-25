@@ -53,14 +53,17 @@ const loadFile = (d) => {
 
 const styleRestore = () => {
     $("#palette").empty();
-    $("#chart").hide();
+
     $("#image p").hide();
+
     $("#image")
         .css("border-color", "rgba(99, 87, 87, 0.3)")
         .css("background-color", "#ffffff");
     $("#output")
         .html("Pick Color")
         .css("border-color", "rgba(99, 87, 87, 0.3)");
+
+    // $("#chart").hide();
 }
 
 let canvas = $("#canvas")[0],
@@ -149,10 +152,16 @@ const fileOnload = (e) => {
 
 const genChart = () => {
 
-    const container = document.querySelector('#chart');
+    if ($("#chart > canvas").length > 0) {
+        let chartCanvas = $("#chart > canvas")[0];
+        let chartCtx = chartCanvas.getContext("2d");
+        chartCtx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+    }
+    const container = $('#chart')[0];
 
     const chart = new Chart(container);
+
     $("#chart").css("display", "flex")
 
-    chart.render();
+    chart.start();
 }
