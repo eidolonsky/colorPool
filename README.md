@@ -1,13 +1,10 @@
 # colorPool
 
-## todo
-- ~~pick color from any pixel~~
-- ~~generate palette of five dominant colors~~
-- ~~magnifying glass~~
-- ~~drop to upload image~~
-- ~~Promise~~
-- 3d chart for pixel distribution of RGB space
-- ~~optimize K means algorithm~~
+colorPool is a tool for color analysis. 
+
+- pick color from image
+- generate dominant color palette
+- show all color in RBG space
 
 ## Reference
 - https://burakkanber.com/blog/machine-learning-k-means-clustering-in-javascript-part-1/
