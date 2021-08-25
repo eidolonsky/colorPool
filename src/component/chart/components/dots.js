@@ -40,7 +40,7 @@ function createMeshGroup(data) {
     }
     console.log(counter)
 
-    // group.scale.multiplyScalar(2);
+    group.scale.multiplyScalar(0.5);
 
     const radiansPerSecond = MathUtils.degToRad(5);
 

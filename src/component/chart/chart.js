@@ -35,11 +35,11 @@ class Chart {
 
         scene.add(ambientLight, mainLight, meshGroup);
 
-        scene.position.set(0, -100, 0);
+        scene.position.set(0, -50, 0);
 
-        scene.rotation.x = MathUtils.degToRad(1);
-        scene.rotation.y = MathUtils.degToRad(0);
-        scene.rotation.z = MathUtils.degToRad(0);
+        // scene.rotation.x = MathUtils.degToRad(5);
+        // scene.rotation.y = MathUtils.degToRad(0);
+        // scene.rotation.z = MathUtils.degToRad(5);
 
         const resizer = new Resizer(container, camera, renderer);
     }
