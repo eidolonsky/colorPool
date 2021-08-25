@@ -119,9 +119,12 @@ const fileOnload = (e) => {
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
 
-                    let i = (y * imgData.width + x) * 4;
+                    let iData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    let tData = iData.data;
+                    let i = (y * iData.width + x) * 4;
+
                     let hex = (
-                        "000000" + rgbToHex(oData[i], oData[i + 1], oData[i + 2])
+                        "000000" + rgbToHex(tData[i], tData[i + 1], tData[i + 2])
                     ).slice(-6);
                     $("#output")
                         .html(
@@ -129,11 +132,11 @@ const fileOnload = (e) => {
                             hex.toUpperCase() +
                             "</br>" +
                             "RGB: " +
-                            oData[i] +
+                            tData[i] +
                             "," +
-                            oData[i + 1] +
+                            tData[i + 1] +
                             "," +
-                            oData[i + 2] +
+                            tData[i + 2] +
                             "</p>"
                         )
                         .css("border-color", "#" + hex);
