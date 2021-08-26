@@ -4,7 +4,7 @@ colorPool is a tool for color analysis.
 
 - pick color from image
 - generate dominant color palette
-- show all color in RBG space
+- display all color in 3d plot chart
 
 ## Reference
 - https://burakkanber.com/blog/machine-learning-k-means-clustering-in-javascript-part-1/
