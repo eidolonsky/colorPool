@@ -59,7 +59,8 @@ const styleRestore = () => {
     $("#output")
         .html("colorPool")
         .css("background-color", "white")
-        .css("color", "black");
+        .css("color", "rgb(100, 185, 255)")
+        .css("text-shadow", "-1px 0 rgb(230, 230, 230), 0 1px rgb(230, 230, 230), 1px 0 rgb(230, 230, 230), 0 -1px rgb(230, 230, 230)");
 
     if ($("#chartCanvas").length) {
         $("#chart").empty()
@@ -185,7 +186,9 @@ const fileOnload = (e) => {
 const genChart = (data) => {
     const container = $('#chart')[0];
     const chart = new Chart(container, data);
-    $("#chart").css("display", "flex")
+    $("#chart")
+        .css("display", "flex")
+        .css("background", "-webkit-linear-gradient( #676767 0%, #000000bb 70%, #434343 100%)")
     chart.start();
 }
 
@@ -193,9 +196,12 @@ const copyColor = (d) => {
     let $temp = $("<textarea>");
     $("body").append($temp);
 
-    let t = $(d).text().trim()
-    console.log(t)
-    $temp.val(t).select()
+    let t = $(d).text()
+
+    let reg = /(?<=: ).*/g;
+    let tReg = t.match(reg)
+
+    $temp.val(tReg).select()
     document.execCommand("copy");
     $temp.remove();
 }

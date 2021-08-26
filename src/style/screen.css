@@ -17,10 +17,12 @@ body {
     align-items: center;
 }
 
-
-/* .container {
-    margin-top: 10px;
-} */
+.container {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 15px rgba(114, 114, 114, 0.227), -10px -10px 15px rgba(109, 109, 109, 0.227);
+    padding: 35px;
+    box-shadow: 0 -15px 48px -32px rgb(23 16 159 / 20%), 0 96px 96px -64px rgb(23 16 159 / 40%);
+}
 
 .canvas-container {
     align-items: center;
@@ -49,12 +51,12 @@ body {
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
-    background: #ffffff;
-    box-shadow: 10px 10px 15px #7272723a, -10px -10px 15px #6d6d6d3a;
+    background: rgb(255, 255, 255);
+    box-shadow: 5px 5px 10px rgba(114, 114, 114, 0.227), -5px -5px 10px rgba(109, 109, 109, 0.227);
     min-height: 250px;
     flex-direction: column;
     /* border: 15px solid rgb(128, 128, 128); */
-    transition: all 1s;
+    transition: all 0.5s;
 }
 
 .canvas p:first-child {
@@ -75,7 +77,6 @@ body {
 
 #chart {
     grid-area: chart;
-    background: -webkit-linear-gradient( #676767 0%, #000000bb 70%, #434343 100%);
 }
 
 input {
@@ -83,22 +84,23 @@ input {
 }
 
 #label {
-    background-color: steelblue;
     border-radius: 5px;
     /* border: 15px solid rgba(227, 227, 227, 0.283); */
-    box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
-    color: #ffffff;
+    box-shadow: 5px 5px 10px rgba(114, 114, 114, 0.227), -5px -5px 10px rgba(109, 109, 109, 0.227);
+    color: rgb(0, 0, 0);
     padding: 10px;
     margin: 0 10px;
     width: 150px;
     height: 50px;
     max-height: 50px;
-    transition: all 1s;
+    transition: all 0.5s;
     cursor: pointer;
+    font-weight: bold;
 }
 
 #label:hover {
-    background-color: firebrick;
+    background-color: rgb(255, 99, 71);
+    color: rgb(255, 255, 255);
 }
 
 #output {
@@ -106,16 +108,22 @@ input {
     text-align: left;
     z-index: 5;
     border-radius: 5px;
-    background-color: rgba(250, 235, 215, 0.3);
+    background-color: rgba(250, 234, 214, 0.3);
     /* border: 15px solid rgb(128, 128, 128); */
-    box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
+    box-shadow: 5px 5px 10px rgba(114, 114, 114, 0.227), -5px -5px 10px rgba(109, 109, 109, 0.227);
     padding: 10px;
     margin: 0 10px;
     width: 150px;
     height: 50px;
-    transition: all 1s;
-    text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
+    transition: all 0.5s;
+    text-shadow: -1px 0 rgb(230, 230, 230), 0 1px rgb(230, 230, 230), 1px 0 rgb(230, 230, 230), 0 -1px rgb(230, 230, 230);
     font-size: 20px;
+    color: rgb(100, 185, 255);
+}
+
+#hex:hover,
+#rgb:hover {
+    text-shadow: -1px 0 rgb(0, 140, 169), 0 1px rgba(0, 140, 169), 1px 0 rgba(0, 140, 169), 0 -1px rgba(0, 140, 169);
 }
 
 #output span {
@@ -134,7 +142,7 @@ input {
     padding: 0 5px;
     height: 50px;
     width: 100%;
-    color: white;
+    color: rgb(255, 255, 255);
     letter-spacing: 2px;
     /* border: 3px groove rgba(54, 54, 54, 0.8); */
     text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
@@ -142,16 +150,15 @@ input {
 
 #intro {
     grid-area: intro;
-    box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
+    box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.082), -5px -5px 5px rgba(0, 0, 0, 0.208);
     /* border: 15px solid rgba(0, 84, 174, 0.249); */
     border-radius: 5px;
     padding: 5px;
     margin: 0 10px;
-    color: rgb(255, 255, 255);
-    background: -webkit-radial-gradient(top right, circle, #8aff50 0%, #37c3ff 100%);
-    background: radial-gradient(circle at top right, #8aff50 0%, #37c3ff 100%);
-    background-color: #521d91;
-    box-shadow: 0 48px 48px -32px rgb(23 16 159 / 20%), 0 96px 96px -64px rgb(23 16 159 / 40%);
+    color: rgb(0, 0, 0);
+    /* background: -webkit-radial-gradient(top right, circle, #f3fc46 0%, #20b4f3 50%, #1594ca 100%); */
+    /* background-color: #521d91; */
+    box-shadow: 5px 5px 10px rgba(114, 114, 114, 0.227), -5px -5px 10px rgba(109, 109, 109, 0.227);
     overflow-wrap: break-word;
 }
 
