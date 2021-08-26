@@ -56,12 +56,10 @@ const styleRestore = () => {
 
     $("#image p").hide();
 
-    $("#image")
-        .css("border-color", "rgba(99, 87, 87, 0.3)")
-        .css("background-color", "#ffffff");
     $("#output")
         .html("colorPool")
-        .css("border-color", "rgba(99, 87, 87, 0.3)");
+        .css("background-color", "white")
+        .css("color", "black");
 
     if ($("#chartCanvas").length) {
         $("#chart").empty()
@@ -127,22 +125,45 @@ const fileOnload = (e) => {
                     let hex = (
                         "000000" + rgbToHex(tData[i], tData[i + 1], tData[i + 2])
                     ).slice(-6);
+
                     $("#output")
                         .html(
-                            "<p>HEX: #" +
-                            hex.toUpperCase() +
-                            "</br>" +
-                            "RGB: " +
-                            tData[i] +
-                            "," +
-                            tData[i + 1] +
-                            "," +
-                            tData[i + 2] +
-                            "</p>"
+                            `<p>
+                                <span id="hex" title="Click to copy">
+                                    HEX: #${hex.toUpperCase()}
+                                </span>
+                                </br>
+                                <span id="rgb" title="Click to copy">
+                                    RGB: ${tData[i]}, ${tData[i + 1]}, ${tData[i + 2]}
+                                </span>
+                            </p>`
                         )
-                        .css("border-color", "#" + hex);
-                    $("#image")
-                        .css("border-color", "#" + hex);
+                        .css("background-color", "#" + hex)
+                        .css("color", "white");
+
+                    // $("#hex").click((e) => {
+                    //     console.log("called", e.currentTarget)
+                    //     copyColor(e.currentTarget)
+
+                    //     $("#output p").hide().add("<p id='copyAlert'>Copied!</p>")
+
+                    //     setTimeout(() => {
+                    //         $("#copyAlert").remove()
+                    //         $("#output p").show()
+                    //     }, 1000)
+                    // })
+                    $("#hex, #rgb").click((e) => {
+                        console.log("called", e.currentTarget)
+                        copyColor(e.currentTarget)
+
+                        $("#output p").hide()
+                        $("#output").append("<p id='copyAlert'>Copied!</p>")
+
+                        setTimeout(() => {
+                            $("#copyAlert").remove()
+                            $("#output p").show()
+                        }, 500)
+                    })
                 });
 
                 $("#canvas").mousemove(function(e) {
@@ -162,13 +183,19 @@ const fileOnload = (e) => {
 };
 
 const genChart = (data) => {
-
-
     const container = $('#chart')[0];
-
     const chart = new Chart(container, data);
-
     $("#chart").css("display", "flex")
-
     chart.start();
+}
+
+const copyColor = (d) => {
+    let $temp = $("<textarea>");
+    $("body").append($temp);
+
+    let t = $(d).text().trim()
+    console.log(t)
+    $temp.val(t).select()
+    document.execCommand("copy");
+    $temp.remove();
 }

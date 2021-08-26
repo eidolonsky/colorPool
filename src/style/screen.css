@@ -1,6 +1,6 @@
 * {
     font-family: "Gill Sans", sans-serif;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 html,
@@ -53,7 +53,7 @@ body {
     box-shadow: 10px 10px 15px #7272723a, -10px -10px 15px #6d6d6d3a;
     min-height: 250px;
     flex-direction: column;
-    border: 15px solid rgb(128, 128, 128);
+    /* border: 15px solid rgb(128, 128, 128); */
     transition: all 1s;
 }
 
@@ -70,7 +70,7 @@ body {
 
 #canvas {
     cursor: crosshair;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    /* border: 1px solid rgba(0, 0, 0, 0.2); */
 }
 
 #chart {
@@ -85,13 +85,13 @@ input {
 #label {
     background-color: steelblue;
     border-radius: 5px;
-    border: 15px solid rgba(227, 227, 227, 0.283);
+    /* border: 15px solid rgba(227, 227, 227, 0.283); */
     box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
     color: #ffffff;
     padding: 10px;
     margin: 0 10px;
-    width: 120px;
-    height: 30px;
+    width: 150px;
+    height: 50px;
     max-height: 50px;
     transition: all 1s;
     cursor: pointer;
@@ -102,21 +102,24 @@ input {
 }
 
 #output {
+    font-weight: bold;
     text-align: left;
     z-index: 5;
     border-radius: 5px;
     background-color: rgba(250, 235, 215, 0.3);
-    border: 15px solid rgb(128, 128, 128);
+    /* border: 15px solid rgb(128, 128, 128); */
     box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
     padding: 10px;
     margin: 0 10px;
-    width: 120px;
-    height: 30px;
+    width: 150px;
+    height: 50px;
     transition: all 1s;
+    text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
+    font-size: 20px;
 }
 
-#output * {
-    font-size: 13px;
+#output span {
+    cursor: pointer;
 }
 
 #palette {
@@ -133,21 +136,28 @@ input {
     width: 100%;
     color: white;
     letter-spacing: 2px;
-    border: 3px groove rgba(54, 54, 54, 0.8);
+    /* border: 3px groove rgba(54, 54, 54, 0.8); */
     text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
 }
 
 #intro {
     grid-area: intro;
     box-shadow: 2.5px 2.5px 5px #00000015, -5px -5px 5px #00000035;
-    border: 15px solid rgba(0, 84, 174, 0.249);
+    /* border: 15px solid rgba(0, 84, 174, 0.249); */
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
     margin: 0 10px;
-    background-color: rgba(176, 196, 222, 0.639);
+    color: rgb(255, 255, 255);
+    background: -webkit-radial-gradient(top right, circle, #8aff50 0%, #37c3ff 100%);
+    background: radial-gradient(circle at top right, #8aff50 0%, #37c3ff 100%);
+    background-color: #521d91;
+    box-shadow: 0 48px 48px -32px rgb(23 16 159 / 20%), 0 96px 96px -64px rgb(23 16 159 / 40%);
     overflow-wrap: break-word;
 }
 
 #intro li {
     padding: 5px;
+    font-size: 145x;
+    overflow-wrap: break-word;
+    max-width: 75%;
 }
