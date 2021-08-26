@@ -60,7 +60,7 @@ const styleRestore = () => {
         .css("border-color", "rgba(99, 87, 87, 0.3)")
         .css("background-color", "#ffffff");
     $("#output")
-        .html("Pick Color")
+        .html("colorPool")
         .css("border-color", "rgba(99, 87, 87, 0.3)");
 
     if ($("#chartCanvas").length) {
@@ -83,7 +83,7 @@ const fileOnload = (e) => {
                     h,
                     cwidth = 500,
                     cheight = 500,
-                    scale = 7.5,
+                    scale = 10,
                     img = this,
                     cPoint = {};
                 if (this.naturalWidth / this.naturalHeight >= 1) {

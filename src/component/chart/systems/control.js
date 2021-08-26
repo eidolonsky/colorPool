@@ -6,8 +6,9 @@ function createControls(camera, canvas) {
     controls.enableDamping = true;
 
     controls.tick = () => controls.update();
-    controls.maxPolarAngle = Math.PI / 2;
-    controls.maxPolarAngle = Math.PI / 2;
+    // controls.maxPolarAngle = Math.PI / 2;
+    // controls.minPolarAngle = Math.PI / 2;
+
     return controls;
 }
 
