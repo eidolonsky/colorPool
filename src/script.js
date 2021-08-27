@@ -79,9 +79,9 @@ const fileOnload = (e) => {
             $img.on("load", function() {
                 let w,
                     h,
-
-                    cwidth = Math.floor($(window).height() / 200) * 100,
-                    cheight = Math.floor($(window).height() / 200) * 100,
+                    cLength = Math.floor($(window).height() / 200) * 100,
+                    cwidth = cLength > 500 ? 500 : cLength,
+                    cheight = cLength > 500 ? 500 : cLength,
                     scale = 10,
                     img = this,
                     cPoint = {};

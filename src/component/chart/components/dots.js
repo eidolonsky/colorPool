@@ -6,6 +6,7 @@ import {
     MeshStandardMaterial
 } from '../../../js/three/build/three.module.js';
 import { createAxes } from '../components/axes.js';
+import { createGrid } from '../components/grid.js';
 
 function createMeshGroup(data) {
 
@@ -15,8 +16,26 @@ function createMeshGroup(data) {
     geometry.translate(-127.5, -127.5, -127.5)
 
     const axes = createAxes();
-    axes.geometry.center()
-    group.add(axes);
+    const gridR = createGrid();
+    const gridG = createGrid();
+    const gridB = createGrid();
+
+    axes.geometry.center();
+    axes.scale.multiplyScalar(1.01)
+
+    gridR.geometry.center();
+    gridG.geometry.center();
+    gridB.geometry.center();
+
+    gridR.position.y = -127.5;
+
+    gridG.rotation.x = MathUtils.degToRad(90);
+    gridG.position.z = -127.5;
+
+    gridB.rotation.z = MathUtils.degToRad(90);
+    gridB.position.x = -127.5;
+
+    group.add(gridR, gridG, gridB, axes);
 
     let counter = 0;
     for (const point of data) {

@@ -99,7 +99,7 @@ input {
     height: 50px;
     transition: all 0.5s;
     cursor: pointer;
-    color: rgb(0, 0, 0);
+    color: rgb(57, 136, 255);
     max-height: 50px;
     font-weight: bold;
 }
@@ -118,7 +118,7 @@ input {
     transition: all 0.5s;
     text-shadow: -1px 0 rgb(230, 230, 230), 0 1px rgb(230, 230, 230), 1px 0 rgb(230, 230, 230), 0 -1px rgb(230, 230, 230);
     font-size: 20px;
-    color: rgb(100, 185, 255);
+    color: rgbrgb(57, 136, 255);
 }
 
 #hex,
@@ -158,10 +158,11 @@ input {
     margin: 0 10px;
     color: rgb(0, 0, 0);
     overflow-wrap: break-word;
+    justify-content: space-around;
 }
 
 #intro li {
     padding: 5px;
-    font-size: 14px;
+    font-size: 12px;
     overflow-wrap: break-word;
 }
