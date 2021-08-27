@@ -1,6 +1,6 @@
 import { OrbitControls } from '../../../js/three/examples/jsm/controls/OrbitControls.js';
 
-function createControls(camera, canvas) {
+const createControls = (camera, canvas) => {
     const controls = new OrbitControls(camera, canvas);
 
     controls.enableDamping = true;

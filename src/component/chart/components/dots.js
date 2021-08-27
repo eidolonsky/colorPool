@@ -8,7 +8,7 @@ import {
 import { createAxes } from '../components/axes.js';
 import { createGrid } from '../components/grid.js';
 
-function createMeshGroup(data) {
+const createMeshGroup = (data) => {
 
     const group = new Group();
 

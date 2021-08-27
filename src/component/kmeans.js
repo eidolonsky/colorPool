@@ -86,13 +86,13 @@ const rgbToHsl = (c) => {
 
 const sortRGB = (d) => {
     return d
-        .map(function(c, i) {
+        .map((c, i) => {
             return { color: rgbToHsl(c), index: i };
         })
-        .sort(function(c1, c2) {
+        .sort((c1, c2) => {
             return c1.color[0] - c2.color[0];
         })
-        .map(function(t) {
+        .map((t) => {
             return d[t.index];
         });
 };

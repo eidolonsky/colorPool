@@ -1,6 +1,6 @@
 import { WebGLRenderer } from '../../../js/three/build/three.module.js';
 
-function createRenderer() {
+const createRenderer = () => {
     const renderer = new WebGLRenderer({ 
         antialias: true,
         alpha: true

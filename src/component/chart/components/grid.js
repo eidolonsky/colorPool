@@ -1,6 +1,6 @@
 import { GridHelper, MathUtils } from '../../../js/three/build/three.module.js';
 
-function createGrid() {
+const createGrid = () => {
     const gridHelper = new GridHelper(255);
 
     return gridHelper;

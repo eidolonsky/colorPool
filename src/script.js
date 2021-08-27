@@ -34,7 +34,7 @@ drag.addEventListener("drop", (e) => {
     loadFile(file);
 })
 
-$("#file-input").change(function(e) {
+$("#file-input").change((e) => {
     file = e.target.files[0];
     loadFile(file);
 });
@@ -77,21 +77,21 @@ const fileOnload = (e) => {
         if (e) {
             styleRestore();
             let $img = $("<img>", { src: e.target.result });
-            $img.on("load", function() {
+            $img.on("load", (e) => {
                 let w,
                     h,
                     cLength = Math.floor($(window).height() / 200) * 100,
                     cwidth = cLength > 500 ? 500 : cLength,
                     cheight = cLength > 500 ? 500 : cLength,
                     scale = 10,
-                    img = this,
+                    img = e.currentTarget,
                     cPoint = {};
-                if (this.naturalWidth / this.naturalHeight >= 1) {
+                if (img.naturalWidth / img.naturalHeight >= 1) {
                     w = cwidth;
-                    h = (this.naturalHeight / this.naturalWidth) * cwidth;
+                    h = (img.naturalHeight / img.naturalWidth) * cwidth;
                 } else {
                     h = cheight;
-                    w = (this.naturalWidth / this.naturalHeight) * cheight;
+                    w = (img.naturalWidth / img.naturalHeight) * cheight;
                 }
                 canvas.width = w / scale;
                 canvas.height = h / scale;

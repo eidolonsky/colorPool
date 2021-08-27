@@ -1,6 +1,6 @@
 import { DirectionalLight, HemisphereLight } from '../../../js/three/build/three.module.js';
 
-function createLights() {
+const createLights = () => {
     const ambientLight = new HemisphereLight(
         'white',
         'darkslategrey',

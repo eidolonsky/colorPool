@@ -1,6 +1,6 @@
 import { PerspectiveCamera, OrthographicCamera } from '../../../js/three/build/three.module.js';
 
-function createCamera() {
+const createCamera = () => {
     // const camera = new PerspectiveCamera(
     //     100, // fov = Field Of View
     //     1, // aspect ratio (dummy value)
