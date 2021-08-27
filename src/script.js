@@ -59,7 +59,8 @@ const styleRestore = () => {
     $("#output")
         .html("colorPool")
         .css("background-color", "white")
-        .css("color", "rgb(100, 185, 255)");
+        .css("color", "rgb(100, 185, 255)")
+        .css("text-shadow", "-2px 0 rgb(57, 136, 255, 0.3), 0 2px rgb(57, 136, 255, 0.3), 2px 0 rgb(57, 136, 255, 0.3), 0 -2px rgb(57, 136, 255, 0.3)");
 
     if ($("#chartCanvas").length) {
         $("#chart").empty()
@@ -113,9 +114,8 @@ const fileOnload = (e) => {
                     resolve(data);
                 }, 0);
 
-                $("#canvas").click(function(e) {
-                    let pos = findPos(this);
-
+                $("#canvas").click((e)=> {
+                    let pos = findPos(e.currentTarget);
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
 
@@ -143,20 +143,7 @@ const fileOnload = (e) => {
                         .css("color", "white")
                         .css("text-shadow", "-1px 0 rgb(0, 0, 0), 0 1px rgb(0, 0, 0), 1px 0 rgb(0, 0, 0), 0 -1px rgb(0, 0, 0)");
 
-
-                    // $("#hex").click((e) => {
-                    //     console.log("called", e.currentTarget)
-                    //     copyColor(e.currentTarget)
-
-                    //     $("#output p").hide().add("<p id='copyAlert'>Copied!</p>")
-
-                    //     setTimeout(() => {
-                    //         $("#copyAlert").remove()
-                    //         $("#output p").show()
-                    //     }, 1000)
-                    // })
                     $("#hex, #rgb").click((e) => {
-                        console.log("called", e.currentTarget)
                         copyColor(e.currentTarget)
 
                         $("#output p").hide()
@@ -169,15 +156,10 @@ const fileOnload = (e) => {
                     })
                 });
 
-                $("#canvas").mousemove(function(e) {
-                    let pos = findPos(this);
-                    let x = e.pageX - pos.x;
-                    let y = e.pageY - pos.y;
+                $("#canvas").mousemove((e) => {
                     cPoint = windowToCanvas(e.clientX, e.clientY);
-                    // var cPoint = { x: x, y: y };
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(img, 0, 0, w, h);
-                    // calORect(cPoint);
                     drawZoom(cPoint, ctx);
                 });
             });

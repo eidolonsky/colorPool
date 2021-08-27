@@ -10,8 +10,6 @@ class Resizer {
         camera.updateProjectionMatrix();
 
         // update the size of the renderer AND the canvas
-        console.log(container)
-        console.log(w, h);
         renderer.setSize(w, h);
 
         // set the pixel ratio (for mobile devices)

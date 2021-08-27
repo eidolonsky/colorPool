@@ -116,9 +116,9 @@ input {
     width: 150px;
     height: 50px;
     transition: all 0.5s;
-    text-shadow: -1px 0 rgb(230, 230, 230), 0 1px rgb(230, 230, 230), 1px 0 rgb(230, 230, 230), 0 -1px rgb(230, 230, 230);
+    text-shadow: -2px 0 rgb(57, 136, 255, 0.3), 0 2px rgb(57, 136, 255, 0.3), 2px 0 rgb(57, 136, 255, 0.3), 0 -2px rgb(57, 136, 255, 0.3);
     font-size: 20px;
-    color: rgbrgb(57, 136, 255);
+    color: rgb(57, 136, 255);
 }
 
 #hex,
