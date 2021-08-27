@@ -59,8 +59,7 @@ const styleRestore = () => {
     $("#output")
         .html("colorPool")
         .css("background-color", "white")
-        .css("color", "rgb(100, 185, 255)")
-        .css("text-shadow", "-1px 0 rgb(230, 230, 230), 0 1px rgb(230, 230, 230), 1px 0 rgb(230, 230, 230), 0 -1px rgb(230, 230, 230)");
+        .css("color", "rgb(100, 185, 255)");
 
     if ($("#chartCanvas").length) {
         $("#chart").empty()
@@ -140,7 +139,9 @@ const fileOnload = (e) => {
                             </p>`
                         )
                         .css("background-color", "#" + hex)
-                        .css("color", "white");
+                        .css("color", "white")
+                        .css("text-shadow", "-1px 0 rgb(0, 0, 0), 0 1px rgb(0, 0, 0), 1px 0 rgb(0, 0, 0), 0 -1px rgb(0, 0, 0)");
+
 
                     // $("#hex").click((e) => {
                     //     console.log("called", e.currentTarget)
@@ -198,8 +199,8 @@ const copyColor = (d) => {
 
     let t = $(d).text()
 
-    let reg = /(?<=: ).*/g;
-    let tReg = t.match(reg)
+    let reg = /\w{3}:\s/g;
+    let tReg = t.replace(reg, "");
 
     $temp.val(tReg).select()
     document.execCommand("copy");
