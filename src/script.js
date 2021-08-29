@@ -51,23 +51,6 @@ const loadFile = (d) => {
     reader.readAsDataURL(d);
 }
 
-const styleRestore = () => {
-    $("#palette").empty();
-
-    $("#image p").hide();
-
-    $("#output")
-        .html("colorPool")
-        .css("background-color", "white")
-        .css("color", "rgb(100, 185, 255)")
-        .css("text-shadow", "-2px 0 rgb(57, 136, 255, 0.3), 0 2px rgb(57, 136, 255, 0.3), 2px 0 rgb(57, 136, 255, 0.3), 0 -2px rgb(57, 136, 255, 0.3)");
-
-    if ($("#chartCanvas").length) {
-        $("#chart").empty()
-        $("#chart").hide()
-    }
-}
-
 let canvas = $("#canvas")[0],
     ctx = canvas.getContext("2d");
 
@@ -156,11 +139,26 @@ const fileOnload = (e) => {
                     })
                 });
 
+                let zscale = 2;    
+
+                $("#canvas").mousewheel((e)=>{
+                    e.preventDefault();
+            
+                    zscale += e.deltaY * -0.01;
+                    
+                    zscale = Math.min(Math.max(1, zscale), 10);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, w, h);
+
+                    drawZoom(cPoint, ctx, zscale);
+                })
+
                 $("#canvas").mousemove((e) => {
                     cPoint = windowToCanvas(e.clientX, e.clientY);
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(img, 0, 0, w, h);
-                    drawZoom(cPoint, ctx);
+
+                    drawZoom(cPoint, ctx, zscale);
                 });
             });
         } else reject("Image Error");
@@ -189,3 +187,21 @@ const copyColor = (d) => {
     document.execCommand("copy");
     $temp.remove();
 }
+
+const styleRestore = () => {
+    $("#palette").empty();
+
+    $("#image p").hide();
+
+    $("#output")
+        .html("colorPool")
+        .css("background-color", "white")
+        .css("color", "rgb(100, 185, 255)")
+        .css("text-shadow", "-2px 0 rgb(57, 136, 255, 0.3), 0 2px rgb(57, 136, 255, 0.3), 2px 0 rgb(57, 136, 255, 0.3), 0 -2px rgb(57, 136, 255, 0.3)");
+
+    if ($("#chartCanvas").length) {
+        $("#chart").empty()
+        $("#chart").hide()
+    }
+}
+

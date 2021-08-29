@@ -1,12 +1,10 @@
 // http://www.zhangjikai.com/demo/html5-magnifying-glass/image.html
 
-let
-    oRadius = 50,
+let oRadius = 50,
     oRect = {},
-    scale = 7.5,
     scaleZoom;
 
-const drawZoom = (d, ctx) => {
+const drawZoom = (d, ctx, scale) => {
     oRect.x = d.x - oRadius;
     oRect.y = d.y - oRadius;
     oRect.width = oRadius * 2;
@@ -18,6 +16,7 @@ const drawZoom = (d, ctx) => {
         width: oRect.width * scale,
         height: oRect.height * scale
     }
+
     ctx.save();
     ctx.beginPath();
     ctx.arc(d.x, d.y, oRadius, 0, Math.PI * 2, false);
@@ -54,5 +53,6 @@ const findPos = (obj) => {
         return { x: curleft, y: curtop };
     }
 };
+
 
 export { drawZoom, findPos, windowToCanvas }

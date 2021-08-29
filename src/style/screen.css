@@ -37,7 +37,7 @@ body {
 
 .canvas {
     background: rgb(255, 255, 255);
-    min-height: 250px;
+    min-height: 275px;
     flex-direction: column;
     transition: all 0.5s;
 }
@@ -145,7 +145,7 @@ input {
 .palette-box {
     margin: 0 1px;
     padding: 0 5px;
-    height: 50px;
+    height: 30px;
     width: 100%;
     color: rgb(255, 255, 255);
     letter-spacing: 2px;
