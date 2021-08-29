@@ -12,10 +12,13 @@ import { Loop } from './systems/Loop.js'
 
 // These variables are module-scoped: we cannot access them
 // from outside the module
-let camera;
-let renderer;
-let scene;
-let loop;
+let camera,
+    renderer,
+    scene,
+    loop,
+    chartAngle;
+
+
 
 class Chart {
     constructor(container, data) {
@@ -37,8 +40,12 @@ class Chart {
 
         scene.position.set(0, 0, 0);
 
-        scene.rotation.x = MathUtils.degToRad(1);
-        scene.rotation.y = MathUtils.degToRad(0);
+        chartAngle = 15;
+
+        chartAngle = Math.asin(Math.sqrt(2) / 2 * Math.sin(chartAngle))
+
+        scene.rotation.x = MathUtils.degToRad(0);
+        scene.rotation.y = MathUtils.degToRad(-45);
         scene.rotation.z = MathUtils.degToRad(0);
 
         const resizer = new Resizer(container, camera, renderer);

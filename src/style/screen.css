@@ -40,8 +40,8 @@ body {
     min-height: 275px;
     flex-direction: column;
     transition: all 0.5s;
+    justify-content: space-around;
 }
-
 
 /* style class */
 
@@ -116,7 +116,7 @@ input {
     width: 150px;
     height: 50px;
     transition: all 0.5s;
-    text-shadow: -2px 0 rgb(57, 136, 255, 0.3), 0 2px rgb(57, 136, 255, 0.3), 2px 0 rgb(57, 136, 255, 0.3), 0 -2px rgb(57, 136, 255, 0.3);
+    text-shadow: -1px 0 rgb(57, 136, 255, 0.5), 0 1px rgb(57, 136, 255, 0.5), 1px 0 rgb(57, 136, 255, 0.5), 0 -1px rgb(57, 136, 255, 0.5);
     font-size: 20px;
     color: rgb(57, 136, 255);
 }
@@ -138,18 +138,17 @@ input {
 #palette {
     display: flex;
     flex-flow: row nowrap;
-    padding-top: 7.5px;
     width: 100%;
 }
 
 .palette-box {
-    margin: 0 1px;
-    padding: 0 5px;
+    margin: 3px 0 ;
     height: 30px;
     width: 100%;
     color: rgb(255, 255, 255);
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
+    font-size: 8px;
 }
 
 #intro {

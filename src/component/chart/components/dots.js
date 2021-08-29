@@ -16,26 +16,28 @@ const createMeshGroup = (data) => {
     geometry.translate(-127.5, -127.5, -127.5)
 
     const axes = createAxes();
-    const gridR = createGrid();
-    const gridG = createGrid();
-    const gridB = createGrid();
+    const gridRB = createGrid();
+    const gridGR = createGrid();
+    const gridBG = createGrid();
 
     axes.geometry.center();
     axes.scale.multiplyScalar(1.01)
 
-    gridR.geometry.center();
-    gridG.geometry.center();
-    gridB.geometry.center();
+    gridRB.geometry.center();
+    gridGR.geometry.center();
+    gridBG.geometry.center();
 
-    gridR.position.y = -127.5;
 
-    gridG.rotation.x = MathUtils.degToRad(90);
-    gridG.position.z = -127.5;
 
-    gridB.rotation.z = MathUtils.degToRad(90);
-    gridB.position.x = -127.5;
+    gridRB.position.y = -127.5;
 
-    group.add(gridR, gridG, gridB, axes);
+    gridGR.rotation.x = MathUtils.degToRad(90);
+    gridGR.position.z = -127.5;
+
+    gridBG.rotation.z = MathUtils.degToRad(90);
+    gridBG.position.x = -127.5;
+
+    group.add(gridRB, gridGR, gridBG, axes);
 
     let counter = 0;
     for (const point of data) {
@@ -61,7 +63,7 @@ const createMeshGroup = (data) => {
 
     group.scale.multiplyScalar(0.75);
 
-    const radiansPerSecond = MathUtils.degToRad(5);
+    const radiansPerSecond = MathUtils.degToRad(2);
 
     group.tick = (delta) => {
         // group.rotation.z -= delta * radiansPerSecond;

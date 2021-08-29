@@ -16,7 +16,10 @@ const genPalette = (c) => {
                 "#" +
                 hex.toUpperCase() +
                 "</div>"
-            );
+            )
+            .css("width", $("#canvas").width());
+
+        
         }
     }
 };

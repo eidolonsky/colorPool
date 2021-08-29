@@ -64,11 +64,14 @@ const fileOnload = (e) => {
                 let w,
                     h,
                     cLength = Math.floor($(window).height() / 200) * 100,
-                    cwidth = cLength > 500 ? 500 : cLength,
-                    cheight = cLength > 500 ? 500 : cLength,
-                    scale = 10,
+                    cwidth = cLength > 550 ? 550 : cLength,
+                    cheight = cLength > 550 ? 550 : cLength,
+                    scale = 5,
                     img = e.currentTarget,
                     cPoint = {};
+
+                    console.log(cLength)
+
                 if (img.naturalWidth / img.naturalHeight >= 1) {
                     w = cwidth;
                     h = (img.naturalHeight / img.naturalWidth) * cwidth;
@@ -146,7 +149,7 @@ const fileOnload = (e) => {
             
                     zscale += e.deltaY * -0.01;
                     
-                    zscale = Math.min(Math.max(1, zscale), 10);
+                    zscale = Math.min(Math.max(0.85, zscale), 10);
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(img, 0, 0, w, h);
 
@@ -196,8 +199,8 @@ const styleRestore = () => {
     $("#output")
         .html("colorPool")
         .css("background-color", "white")
-        .css("color", "rgb(100, 185, 255)")
-        .css("text-shadow", "-2px 0 rgb(57, 136, 255, 0.3), 0 2px rgb(57, 136, 255, 0.3), 2px 0 rgb(57, 136, 255, 0.3), 0 -2px rgb(57, 136, 255, 0.3)");
+        .css("color", "rgb(57, 136, 255)")
+        .css("text-shadow", "-1px 0 rgb(57, 136, 255, 0.5), 0 1px rgb(57, 136, 255, 0.5), 1px 0 rgb(57, 136, 255, 0.5), 0 -1px rgb(57, 136, 255, 0.5)");
 
     if ($("#chartCanvas").length) {
         $("#chart").empty()
