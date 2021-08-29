@@ -194,7 +194,9 @@ const copyColor = (d) => {
 const styleRestore = () => {
     $("#palette").empty();
 
-    $("#image p").hide();
+    $("#image p, #image label").hide();
+
+    $("#chart").css("display", "flex")
 
     $("#output")
         .html("colorPool")

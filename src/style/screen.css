@@ -9,7 +9,6 @@ body {
     margin: 0;
 }
 
-
 /* style class */
 
 .flex {
@@ -40,7 +39,7 @@ body {
     min-height: 275px;
     flex-direction: column;
     transition: all 0.5s;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 /* style class */
@@ -71,11 +70,12 @@ body {
     column-gap: 10px;
 }
 
-.canvas p:first-child {
+.canvas label:first-child {
     font-size: 150px;
     margin: -50px 0 -50px 0;
     font-weight: bolder;
     color: rgb(179, 178, 178);
+    cursor: pointer;
 }
 
 #image {
@@ -88,6 +88,7 @@ body {
 
 #chart {
     grid-area: chart;
+    /* display: none; */
 }
 
 input {
