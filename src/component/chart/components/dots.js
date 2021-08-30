@@ -15,19 +15,20 @@ const createMeshGroup = (data) => {
     const geometry = new SphereBufferGeometry(1.5, 5, 5);
     geometry.translate(-127.5, -127.5, -127.5)
 
-    const axes = createAxes();
+    const axesOut = createAxes();
+    const axesIn = createAxes();
     const gridRB = createGrid();
     const gridGR = createGrid();
     const gridBG = createGrid();
 
-    axes.geometry.center();
-    axes.scale.multiplyScalar(1.01)
+    axesOut.geometry.center();
+    axesIn.geometry.center();
+    axesOut.scale.multiplyScalar(1.001)
+    axesIn.scale.multiplyScalar(0.999)
 
     gridRB.geometry.center();
     gridGR.geometry.center();
     gridBG.geometry.center();
-
-
 
     gridRB.position.y = -127.5;
 
@@ -37,7 +38,7 @@ const createMeshGroup = (data) => {
     gridBG.rotation.z = MathUtils.degToRad(90);
     gridBG.position.x = -127.5;
 
-    group.add(gridRB, gridGR, gridBG, axes);
+    group.add(gridRB, gridGR, gridBG, axesOut, axesIn);
 
     let counter = 0;
     for (const point of data) {
@@ -61,7 +62,7 @@ const createMeshGroup = (data) => {
     }
     console.log(counter)
 
-    group.scale.multiplyScalar(0.75);
+    group.scale.multiplyScalar(0.7);
 
     const radiansPerSecond = MathUtils.degToRad(2);
 

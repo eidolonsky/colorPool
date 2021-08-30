@@ -1,7 +1,7 @@
 import { kMeans } from "./component/kmeans.js"
 import { genPalette, rgbToHex } from "./component/palette.js"
 import { drawZoom, findPos, windowToCanvas } from "./component/zoom.js"
-import { Chart } from "./component/chart/chart.js"
+import { styleRestore, copyColor, genChart } from "./component/utils.js"
 
 let drag = $("#image")[0];
 let data = [],
@@ -40,6 +40,9 @@ $("#file-input").change((e) => {
 });
 
 const loadFile = (d) => {
+    $(".canvas-container").css("grid", "'image chart' 'intro intro'");
+    $("#chart").css("grid-area", "chart");
+
     let reader = new FileReader();
     reader.onload = (e) => {
         fileOnload(e)
@@ -70,7 +73,7 @@ const fileOnload = (e) => {
                     img = e.currentTarget,
                     cPoint = {};
 
-                    console.log(cLength)
+                console.log(cLength)
 
                 if (img.naturalWidth / img.naturalHeight >= 1) {
                     w = cwidth;
@@ -100,7 +103,7 @@ const fileOnload = (e) => {
                     resolve(data);
                 }, 0);
 
-                $("#canvas").click((e)=> {
+                $("#canvas").click((e) => {
                     let pos = findPos(e.currentTarget);
                     let x = e.pageX - pos.x;
                     let y = e.pageY - pos.y;
@@ -142,14 +145,14 @@ const fileOnload = (e) => {
                     })
                 });
 
-                let zscale = 2;    
+                let zscale = 2;
 
-                $("#canvas").mousewheel((e)=>{
+                $("#canvas").mousewheel((e) => {
                     e.preventDefault();
-            
-                    zscale += e.deltaY * -0.01;
-                    
-                    zscale = Math.min(Math.max(0.85, zscale), 10);
+
+                    zscale += e.deltaY * -0.5;
+
+                    zscale = Math.min(Math.max(1.05, zscale), 10);
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(img, 0, 0, w, h);
 
@@ -167,46 +170,3 @@ const fileOnload = (e) => {
         } else reject("Image Error");
     });
 };
-
-const genChart = (data) => {
-    const container = $('#chart')[0];
-    const chart = new Chart(container, data);
-    $("#chart")
-        .css("display", "flex")
-        .css("background", "-webkit-linear-gradient( #676767 0%, #000000bb 70%, #434343 100%)")
-    chart.start();
-}
-
-const copyColor = (d) => {
-    let $temp = $("<textarea>");
-    $("body").append($temp);
-
-    let t = $(d).text()
-
-    let reg = /\w{3}:\s/g;
-    let tReg = t.replace(reg, "");
-
-    $temp.val(tReg).select()
-    document.execCommand("copy");
-    $temp.remove();
-}
-
-const styleRestore = () => {
-    $("#palette").empty();
-
-    $("#image p, #image label").hide();
-
-    $("#chart").css("display", "flex")
-
-    $("#output")
-        .html("colorPool")
-        .css("background-color", "white")
-        .css("color", "rgb(57, 136, 255)")
-        .css("text-shadow", "-1px 0 rgb(57, 136, 255, 0.5), 0 1px rgb(57, 136, 255, 0.5), 1px 0 rgb(57, 136, 255, 0.5), 0 -1px rgb(57, 136, 255, 0.5)");
-
-    if ($("#chartCanvas").length) {
-        $("#chart").empty()
-        $("#chart").hide()
-    }
-}
-

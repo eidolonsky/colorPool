@@ -5,21 +5,21 @@ const genPalette = (c) => {
         if (regexNum.test(c[i][0])) {
             let hex = ("000000" + rgbToHex(c[i][0], c[i][1], c[i][2])).slice(-6);
             $("#palette").append(
-                '<div class="palette-box flex" style="background-color:' +
-                "#" +
-                hex +
-                "; border-color:" +
-                "#" +
-                hex +
-                30 +
-                ';"/>' +
-                "#" +
-                hex.toUpperCase() +
-                "</div>"
-            )
-            .css("width", $("#canvas").width());
+                    '<div class="palette-box flex" style="background-color:' +
+                    "#" +
+                    hex +
+                    "; border-color:" +
+                    "#" +
+                    hex +
+                    30 +
+                    ';"/>' +
+                    "#" +
+                    hex.toUpperCase() +
+                    "</div>"
+                )
+                .css("width", $("#canvas").width());
 
-        
+
         }
     }
 };
