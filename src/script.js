@@ -34,11 +34,12 @@ drag.addEventListener("drop", (e) => {
         .css("border", "none");
     $("#image label").css("color", "rgb(179, 178, 178)")
     file = Array.from(e.dataTransfer.files)[0];
-    let fileType = file["type"];
-    let validImageTypes = ["image/gif", "image/jpeg", "image/png"];
-    if ($.inArray(fileType, validImageTypes) < 0) {
-     alert("Please upload an image file.")
-    } else loadFile(file);
+
+    const isImage = (file) => file['type'].includes('image');
+
+    if (file.isImage) {
+        loadFile(file)
+    } else alert("Please upload an image file.");
 })
 
 $("#file-input").change((e) => {
