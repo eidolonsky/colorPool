@@ -36,7 +36,7 @@ const copyColor = (d) => {
 const genChart = (d) => {
     $("#chart")
         .css("display", "flex")
-        .css("background", "-webkit-linear-gradient( #676767 0%, #000000bb 70%, #434343 100%)");
+        .css("background", "-webkit-linear-gradient( #676767 0%, #000000 70%, #434343 100%)");
     const container = $('#chart')[0];
     const chart = new Chart(container, d);
 

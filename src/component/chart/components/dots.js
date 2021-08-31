@@ -63,6 +63,9 @@ const createMeshGroup = (data) => {
     console.log(counter)
 
     group.scale.multiplyScalar(0.7);
+    group.rotation.x = MathUtils.degToRad(15);
+    group.rotation.y = MathUtils.degToRad(-45);
+    group.rotation.z = MathUtils.degToRad(0);
 
     const radiansPerSecond = MathUtils.degToRad(2);
 

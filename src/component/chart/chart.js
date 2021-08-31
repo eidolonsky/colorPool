@@ -44,10 +44,6 @@ class Chart {
 
         chartAngle = Math.asin(Math.sqrt(2) / 2 * Math.sin(chartAngle))
 
-        scene.rotation.x = MathUtils.degToRad(15);
-        scene.rotation.y = MathUtils.degToRad(-45);
-        scene.rotation.z = MathUtils.degToRad(0);
-
         const resizer = new Resizer(container, camera, renderer);
     }
 
