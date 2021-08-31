@@ -1,6 +1,6 @@
 # colorPool
 
-colorPool is a tool for color analysis. 
+colorPool is a tool for color analysis of images. 
 
 - pick color from image
 - generate dominant color palette
