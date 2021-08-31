@@ -3,7 +3,7 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 161.3 169.3" style="enable-background:new 0 0 161.3 169.3;" xml:space="preserve">
 <style type="text/css">
-	.st0{clip-path:url(#SVGID_00000034783007452992243090000004596287714476052128_);}
+	.st0{clip-path:url(#SVGID_00000143599597390483677050000001260637944377489286_);}
 	.st1{fill:#012A4A;}
 	.st2{fill:#013A63;}
 	.st3{fill:#01497C;}
@@ -19,20 +19,20 @@
 	<defs>
 		<circle id="SVGID_1_" cx="81.1" cy="84.7" r="77.5"/>
 	</defs>
-	<clipPath id="SVGID_00000090253640335055607440000002991166242485266356_">
+	<clipPath id="SVGID_00000153680962683700639550000011118230881144528560_">
 		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
 	</clipPath>
-	<g style="clip-path:url(#SVGID_00000090253640335055607440000002991166242485266356_);">
-		<rect class="st1" width="16.1" height="169.3"/>
-		<rect x="16.1" class="st2" width="16.1" height="169.3"/>
-		<rect x="32.3" class="st3" width="16.1" height="169.3"/>
-		<rect x="48.4" class="st4" width="16.1" height="169.3"/>
-		<rect x="64.5" class="st5" width="16.1" height="169.3"/>
-		<rect x="80.6" class="st6" width="16.1" height="169.3"/>
-		<rect x="96.8" class="st7" width="16.1" height="169.3"/>
-		<rect x="112.9" class="st8" width="16.1" height="169.3"/>
-		<rect x="129" class="st9" width="16.1" height="169.3"/>
-		<rect x="145.1" class="st10" width="16.1" height="169.3"/>
+	<g style="clip-path:url(#SVGID_00000153680962683700639550000011118230881144528560_);">
+		<rect x="-4.4" y="-7.7" class="st1" width="17.6" height="184.7"/>
+		<rect x="12.6" y="-7.7" class="st2" width="17.6" height="184.7"/>
+		<rect x="29.7" y="-7.7" class="st3" width="17.6" height="184.7"/>
+		<rect x="46.7" y="-7.7" class="st4" width="17.6" height="184.7"/>
+		<rect x="63.8" y="-7.7" class="st5" width="17.6" height="184.7"/>
+		<rect x="80.8" y="-7.7" class="st6" width="17.6" height="184.7"/>
+		<rect x="97.9" y="-7.7" class="st7" width="17.6" height="184.7"/>
+		<rect x="114.9" y="-7.7" class="st8" width="17.6" height="184.7"/>
+		<rect x="131.9" y="-7.7" class="st9" width="17.6" height="184.7"/>
+		<rect x="149" y="-7.7" class="st10" width="17.6" height="184.7"/>
 	</g>
 </g>
 </svg>

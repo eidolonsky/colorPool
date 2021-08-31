@@ -76,6 +76,22 @@ img {
     height: auto;
 }
 
+.graphic3 {
+    position: fixed;
+    left: 65%;
+    top: 72%;
+    width: 250px;
+    height: auto;
+}
+
+.graphic4 {
+    position: fixed;
+    left: 10%;
+    /* top: -2%; */
+    width: 750px;
+    height: auto;
+}
+
 .container,
 body {
     display: flex;
@@ -86,6 +102,7 @@ body {
 
 .container {
     /* background-color: rgb(255, 255, 255); */
+    margin-top: 50px;
     padding: 35px;
     width: 70%;
     border-radius: 85px;

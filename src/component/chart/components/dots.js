@@ -12,7 +12,7 @@ const createMeshGroup = (data) => {
 
     const group = new Group();
 
-    const geometry = new SphereBufferGeometry(1.5, 5, 5);
+    const geometry = new SphereBufferGeometry(2.5, 5, 5);
     geometry.translate(-127.5, -127.5, -127.5)
 
     const axesOut = createAxes();
