@@ -14,22 +14,25 @@ drag.addEventListener("dragenter", (e) => {
 drag.addEventListener("dragover", (e) => {
     e.preventDefault();
     $("#image")
-        .css("border-color", "#0195E6")
-        .css("background-color", "#0195E620");
+        .css("background-color", "#0195E630")
+        .css("border", "10px dashed #0195E6");
+    $("#image label").css("color", "#0195E6")
 })
 
 drag.addEventListener("dragleave", (e) => {
     e.preventDefault();
     $("#image")
-        .css("border-color", "rgba(99, 87, 87, 0.3)")
-        .css("background-color", "#ffffff");
+        .css("background-color", "rgb(255, 255, 255, 0.85)")
+        .css("border", "none");
+    $("#image label").css("color", "rgb(179, 178, 178)")
 })
 
 drag.addEventListener("drop", (e) => {
     e.preventDefault();
     $("#image")
-        .css("border-color", "rgba(99, 87, 87, 0.3)")
-        .css("background-color", "#ffffff");
+        .css("background-color", "rgb(255, 255, 255, 0.85)")
+        .css("border", "none");
+    $("#image label").css("color", "rgb(179, 178, 178)")
     file = Array.from(e.dataTransfer.files)[0];
     loadFile(file);
 })
