@@ -1,5 +1,5 @@
 * {
-    font-family: "Gill Sans", sans-serif;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
     font-size: 16px;
     transition: all 0.5s;
 }
@@ -88,8 +88,8 @@ img {
 .graphic4 {
     position: fixed;
     left: 10%;
-    /* top: -2%; */
-    width: 750px;
+    top: -5%;
+    width: 60%;
     height: auto;
 }
 
@@ -130,6 +130,10 @@ body {
     color: rgb(179, 178, 178);
     cursor: pointer;
     user-select: none;
+}
+
+.canvas label:first-child:hover{
+    color: rgb(1, 149, 230);
 }
 
 #image {

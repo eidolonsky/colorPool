@@ -14,9 +14,9 @@ drag.addEventListener("dragenter", (e) => {
 drag.addEventListener("dragover", (e) => {
     e.preventDefault();
     $("#image")
-        .css("background-color", "#0195E630")
-        .css("border", "10px dashed #0195E6");
-    $("#image label").css("color", "#0195E6")
+        .css("background-color", "rgb(1, 149, 230, 0.85)")
+        .css("border", "10px dashed rgb(1, 149, 230)");
+    $("#image label").css("color", "rgb(1, 149, 230)")
 })
 
 drag.addEventListener("dragleave", (e) => {
@@ -34,7 +34,11 @@ drag.addEventListener("drop", (e) => {
         .css("border", "none");
     $("#image label").css("color", "rgb(179, 178, 178)")
     file = Array.from(e.dataTransfer.files)[0];
-    loadFile(file);
+    let fileType = file["type"];
+    let validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+    if ($.inArray(fileType, validImageTypes) < 0) {
+     alert("Please upload an image file.")
+    } else loadFile(file);
 })
 
 $("#file-input").change((e) => {
