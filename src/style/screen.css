@@ -88,7 +88,7 @@ img {
 .graphic4 {
     position: fixed;
     left: 10%;
-    top: -5%;
+    top: -1%;
     width: 60%;
     height: auto;
 }
@@ -132,7 +132,7 @@ body {
     user-select: none;
 }
 
-.canvas label:first-child:hover{
+.canvas label:first-child:hover {
     color: rgb(1, 149, 230);
 }
 
@@ -182,10 +182,12 @@ input {
 #hex,
 #rgb {
     cursor: pointer;
+    font-size: 15px;
 }
 
 #hex:hover,
-#rgb:hover {
+#rgb:hover,
+.palette-box p:hover {
     text-shadow: -1px 0 rgb(0, 140, 169), 0 1px rgba(0, 140, 169), 1px 0 rgba(0, 140, 169), 0 -1px rgba(0, 140, 169);
 }
 
@@ -203,10 +205,14 @@ input {
     margin-top: 3px;
     height: 30px;
     width: 100%;
-    color: rgb(255, 255, 255);
+}
+
+.palette-box p {
     letter-spacing: 1px;
-    text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
+    color: rgb(255, 255, 255);
     font-size: 8px;
+    text-shadow: -1px 0 rgb(0, 0, 0, .4), 0 1px rgb(0, 0, 0, .4), 1px 0 rgb(0, 0, 0, .4), 0 -1px rgb(0, 0, 0, .4);
+    cursor: pointer;
 }
 
 #intro {
@@ -223,4 +229,8 @@ input {
     padding: 5px;
     font-size: 12px;
     overflow-wrap: break-word;
+}
+
+#intro b {
+    font-size: 12px;
 }

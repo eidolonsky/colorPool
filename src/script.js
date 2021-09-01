@@ -143,6 +143,7 @@ const fileOnload = (e) => {
                     $("#hex, #rgb").click((e) => {
                         copyColor(e.currentTarget)
 
+                        $("#copyAlert").remove()
                         $("#output p").hide()
                         $("#output").append("<p id='copyAlert'>Copied!</p>")
 
