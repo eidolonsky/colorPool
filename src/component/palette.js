@@ -2,11 +2,12 @@ import { copyColor, rgbToHex } from "./utils.js";
 
 const genPalette = (c) => {
     for (let i = 0; i < 5; i++) {
-        // console.log(c[i][0])
         let regexNum = /^\d+$/;
         if (regexNum.test(c[i][0])) {
-            let hex = ("000000" + rgbToHex(c[i][0], c[i][1], c[i][2])).slice(-6).toUpperCase();
-            console.log(`<div class="palette-box flex" style="background-color: #${hex};"><p>#${hex}</p></div>`)
+            let hex = rgbToHex(c[i]).toUpperCase();
+            if (c[i][3] === 255) {
+                hex = hex.slice(0, -2)
+            }
             $("#palette").append(
                     `<div class="palette-box flex" style="background-color: #${hex};"><p>#${hex}</p></div>`
                 )

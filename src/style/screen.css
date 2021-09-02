@@ -225,6 +225,10 @@ input {
     justify-content: space-around;
 }
 
+#intro .intro-head {
+    margin-left: -15px;
+}
+
 #intro li {
     padding: 5px;
     font-size: 12px;

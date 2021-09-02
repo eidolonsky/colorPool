@@ -33,7 +33,7 @@ const fileOnload = (e) => {
 
                 let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 let oData = imgData.data;
-
+                // console.log(oData)
                 ctx.clearRect(0, 0, w / scale, h / scale)
                 canvas.width = w;
                 canvas.height = h;
@@ -41,7 +41,7 @@ const fileOnload = (e) => {
 
                 let data = []
                 for (let i = 0; i < oData.length; i = i + 4) {
-                    data.push(oData.slice(i, i + 3));
+                    data.push(oData.slice(i, i + 4));
                 }
 
                 setTimeout(() => {
@@ -56,20 +56,23 @@ const fileOnload = (e) => {
                     let iData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     let tData = iData.data;
                     let i = (y * iData.width + x) * 4;
+                    let rgba = [tData[i], tData[i + 1], tData[i + 2], tData[i + 3]];
+                    let hex = rgbToHex(rgba).toUpperCase();
 
-                    let hex = (
-                        "000000" + rgbToHex(tData[i], tData[i + 1], tData[i + 2])
-                    ).slice(-6);
+                    if (tData[i + 3] === 255) {
+                        hex = hex.slice(0, -2)
+                        rgba = rgba.slice(0, 3)
+                    }
 
                     $("#output")
                         .html(
                             `<p>
                                 <span id="hex" title="Click to copy">
-                                    HEX: #${hex.toUpperCase()}
+                                    HEX: #${hex}
                                 </span>
                                 </br>
                                 <span id="rgb" title="Click to copy">
-                                    RGB: ${tData[i]}, ${tData[i + 1]}, ${tData[i + 2]}
+                                    RGB: ${rgba.join(", ")}
                                 </span>
                             </p>`
                         )

@@ -1,27 +1,40 @@
 let centroids = []
 
 const kMeans = (data, k = 5) => {
-    let l = data.length;
-    let sData = sortRGB(data);
+    let aData = [];
+    console.log(data)
+    for (let i = 0; i < data.length; i++) {
+        if (data[i][3] !== 0) {
+            aData.push(data[i])
+        }
+    }
+    console.log(aData)
+
+
+    let sData = sortRGB(aData);
+    console.log(sData)
+
+    let l = sData.length;
+
     let cent = [];
     for (let i = 0; i < k; i++) {
-        cent.push(sData[(l * i * 2 + l) / k / 2]);
+        cent.push(sData[Math.floor((l * i * 2 + l) / k / 2)]);
     }
-    // console.log(cent)
+    console.log(cent)
 
-    const distances = Array.from({ length: data.length }, () =>
+    const distances = Array.from({ length: sData.length }, () =>
         Array.from({ length: k }, () => 0)
     );
-    const classes = Array.from({ length: data.length }, () => -1);
+    const classes = Array.from({ length: sData.length }, () => -1);
     let itr = true;
 
     while (itr) {
         itr = false;
 
-        for (let d in data) {
+        for (let d in sData) {
             for (let c = 0; c < k; c++) {
                 distances[d][c] = Math.hypot(
-                    ...Object.keys(data[0]).map((key) => data[d][key] - cent[c][key])
+                    ...Object.keys(sData[0]).map((key) => sData[d][key] - cent[c][key])
                 );
             }
             const m = distances[d].indexOf(Math.min(...distances[d]));
@@ -30,19 +43,19 @@ const kMeans = (data, k = 5) => {
         }
 
         for (let c = 0; c < k; c++) {
-            centroids[c] = Array.from({ length: data[0].length }, () => 0);
+            centroids[c] = Array.from({ length: sData[0].length }, () => 0);
 
-            const size = data.reduce((acc, _, d) => {
+            const size = sData.reduce((acc, _, d) => {
                 if (classes[d] === c) {
                     acc++;
                     for (let i in data[0]) {
-                        centroids[c][i] += data[d][i];
+                        centroids[c][i] += sData[d][i];
                     }
                 }
                 return acc;
             }, 0);
 
-            for (let i in data[0]) {
+            for (let i in sData[0]) {
                 centroids[c][i] = Math.round(Number(centroids[c][i] / size));
                 // console.log(centroids[c][i])
             }

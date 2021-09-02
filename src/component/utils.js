@@ -43,9 +43,10 @@ const genChart = (d) => {
     chart.start();
 }
 
-const rgbToHex = (r, g, b) => {
-    if (r > 255 || g > 255 || b > 255) throw "Invalid color component";
-    return ((r << 16) | (g << 8) | b).toString(16);
+const rgbToHex = (rgba) => {
+    return rgba.map(
+            (x) => x.toString(16).length === 1 ? ("0" + x.toString(16)) : x.toString(16))
+        .reduce((x, y) => (x + y));
 };
 
 export { styleRestore, copyColor, genChart, rgbToHex }
