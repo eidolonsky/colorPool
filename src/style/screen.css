@@ -39,7 +39,7 @@ body {
 .canvas {
     background: rgb(255, 255, 255, 0.85);
     min-height: 275px;
-    min-width: 275px;
+    /* min-width: 275px; */
     /* width: 100%; */
     flex-direction: column;
     justify-content: center;
@@ -120,7 +120,7 @@ body {
     row-gap: 10px;
     column-gap: 10px;
     flex-flow: row wrap;
-    width: 100%;
+    width: auto;
 }
 
 #image label:first-child {
@@ -282,6 +282,9 @@ input {
         margin: 0px;
         font-size: 0;
     }
+    #copyAlert {
+        font-size: 9px;
+    }
     #intro .flex-column {
         flex-direction: row;
     }
@@ -302,5 +305,9 @@ input {
     #rgb {
         cursor: pointer;
         font-size: 9px;
+    }
+    .graphic1 {
+        left: -2%;
+        top: 35%;
     }
 }

@@ -24,8 +24,8 @@ const fileOnload = (e) => {
                     cheight = cLength > $(window).width() * 0.7 ? $(window).width() * 0.7 : cLength;
                 } else {
                     cLength = Math.floor($(window).height() / 200) * 100;
-                    cwidth = cLength > $(window).width() * 0.45 ? $(window).width() * 0.45 : cLength;
-                    cheight = cLength > $(window).width() * 0.45 ? $(window).width() * 0.45 : cLength;
+                    cwidth = cLength > $(window).width() * 0.4 ? $(window).width() * 0.4 : cLength;
+                    cheight = cLength > $(window).width() * 0.4 ? $(window).width() * 0.4 : cLength;
                 }
 
                 console.log(cLength)
@@ -98,7 +98,7 @@ const fileOnload = (e) => {
 
                         $("#copyAlert").remove()
                         $("#output p").hide()
-                        $("#output").append("<p id='copyAlert'>Copied!</p>")
+                        $("#output").append("<span id='copyAlert'>Copied!</span>")
 
                         setTimeout(() => {
                             $("#copyAlert").remove()
