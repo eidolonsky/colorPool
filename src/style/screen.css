@@ -65,30 +65,30 @@ img {
     position: fixed;
     left: 1%;
     top: 45%;
-    width: 450px;
+    width: 50%;
     height: auto;
 }
 
 .graphic2 {
     position: fixed;
-    left: 65%;
+    left: 55%;
     top: 12%;
-    width: 450px;
+    width: 30%;
     height: auto;
 }
 
 .graphic3 {
     position: fixed;
     left: 65%;
-    top: 72%;
-    width: 250px;
+    top: 62%;
+    width: 40%;
     height: auto;
 }
 
 .graphic4 {
     position: fixed;
     left: 10%;
-    top: -1%;
+    top: 2%;
     width: 60%;
     height: auto;
 }
@@ -198,7 +198,6 @@ input {
 #palette {
     display: flex;
     flex-flow: row nowrap;
-    width: 100%;
 }
 
 .palette-box {
@@ -237,4 +236,57 @@ input {
 
 #intro b {
     font-size: 12px;
+}
+
+#media-check {
+    display: none;
+}
+
+@media screen and (max-device-width: 750px) {
+    #media-check {
+        display: block;
+    }
+    body {
+        justify-content: flex-start;
+    }
+    .container {
+        margin-top: 20px;
+    }
+    .canvas-container {
+        grid-template-areas: "image image" "chart chart" "intro intro";
+        justify-content: center;
+    }
+    .image-note {
+        display: none;
+    }
+    .palette-box {
+        font-size: 6px;
+    }
+    #output,
+    #label {
+        font-size: 12px;
+        width: 105px;
+        height: 25px;
+        margin: 5px;
+    }
+    #intro .flex-column {
+        flex-direction: row;
+    }
+    #intro {
+        flex-direction: column;
+    }
+    #intro ul {
+        padding-left: 30px;
+        margin: 0;
+    }
+    #intro li,
+    #intro b {
+        padding: 2px;
+        font-size: 10px;
+    }
+    #hex,
+    #rgb {
+        cursor: pointer;
+        font-size: 9px;
+    }
 }

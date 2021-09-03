@@ -11,13 +11,20 @@ const fileOnload = (e) => {
             $img.on("load", (e) => {
                 let w,
                     h,
-                    cLength = Math.floor($(window).height() / 200) * 100,
-                    cwidth = cLength > 550 ? 550 : cLength,
-                    cheight = cLength > 550 ? 550 : cLength,
+                    cLength,
                     scale = 5,
                     img = e.currentTarget,
                     cPoint = {};
 
+                if ($("#media-check").is(':visible')) {
+                    // scale = 1;
+                    cLength = Math.floor($(window).width() / 50) * 40;
+                } else {
+                    // scale = 5;
+                    cLength = Math.floor($(window).height() / 200) * 100;
+                }
+                let cwidth = cLength > 550 ? 550 : cLength,
+                    cheight = cLength > 550 ? 550 : cLength;
                 console.log(cLength)
 
                 if (img.naturalWidth / img.naturalHeight >= 1) {
@@ -27,8 +34,11 @@ const fileOnload = (e) => {
                     h = cheight;
                     w = (img.naturalWidth / img.naturalHeight) * cheight;
                 }
+
                 canvas.width = w / scale;
                 canvas.height = h / scale;
+                console.log(w, h, canvas.width, canvas.height)
+
                 ctx.drawImage(img, 0, 0, w / scale, h / scale);
 
                 let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);

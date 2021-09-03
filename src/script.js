@@ -47,7 +47,12 @@ $("#file-input").change((e) => {
 });
 
 const loadFile = (d) => {
-    $(".canvas-container").css("grid", "'image chart' 'intro intro'");
+    if ($("#media-check").is(':visible')) {
+        $(".canvas-container").css("grid", "'image' 'chart' 'intro'");
+    } else {
+        $(".canvas-container").css("grid", "'image chart' 'intro intro'");
+    }
+
     $("#chart").css("grid-area", "chart");
 
     let reader = new FileReader();

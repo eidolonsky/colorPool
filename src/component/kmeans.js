@@ -8,11 +8,10 @@ const kMeans = (data, k = 5) => {
             aData.push(data[i])
         }
     }
-    console.log(aData)
-
+    // console.log(aData)
 
     let sData = sortRGB(aData);
-    console.log(sData)
+    // console.log(sData)
 
     let l = sData.length;
 
@@ -20,7 +19,7 @@ const kMeans = (data, k = 5) => {
     for (let i = 0; i < k; i++) {
         cent.push(sData[Math.floor((l * i * 2 + l) / k / 2)]);
     }
-    console.log(cent)
+    // console.log(cent)
 
     const distances = Array.from({ length: sData.length }, () =>
         Array.from({ length: k }, () => 0)
