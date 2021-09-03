@@ -2,7 +2,7 @@ let centroids = []
 
 const kMeans = (data, k = 5) => {
     let aData = [];
-    console.log(data)
+    // console.log(data)
     for (let i = 0; i < data.length; i++) {
         if (data[i][3] !== 0) {
             aData.push(data[i])
