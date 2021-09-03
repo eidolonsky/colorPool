@@ -48,7 +48,7 @@ $("#file-input").change((e) => {
 
 const loadFile = (d) => {
     if ($("#media-check").is(':visible')) {
-        $(".canvas-container").css("grid", "'image' 'chart' 'intro'");
+        $(".canvas-container").css("grid", "'image' 'intro' 'chart' ");
     } else {
         $(".canvas-container").css("grid", "'image chart' 'intro intro'");
     }

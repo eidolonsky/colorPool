@@ -26,7 +26,7 @@ body {
 
 .flex-column {
     display: flex;
-    flex-flow: column nowrap;
+    /* flex-flow: column nowrap; */
 }
 
 .box {
@@ -64,14 +64,14 @@ img {
 .graphic1 {
     position: fixed;
     left: 1%;
-    top: 45%;
+    top: 25%;
     width: 50%;
     height: auto;
 }
 
 .graphic2 {
     position: fixed;
-    left: 55%;
+    left: 65%;
     top: 12%;
     width: 30%;
     height: auto;
@@ -79,7 +79,7 @@ img {
 
 .graphic3 {
     position: fixed;
-    left: 65%;
+    left: 45%;
     top: 62%;
     width: 40%;
     height: auto;
@@ -123,7 +123,7 @@ body {
     width: 100%;
 }
 
-.canvas label:first-child {
+#image label:first-child {
     font-size: 200px;
     margin: -50px 0 -50px 0;
     font-weight: bolder;
@@ -132,7 +132,7 @@ body {
     user-select: none;
 }
 
-.canvas label:first-child:hover {
+#image label:first-child:hover {
     color: rgb(1, 149, 230);
 }
 
@@ -218,7 +218,7 @@ input {
     background-color: rgb(255, 255, 255, 0.8);
     grid-area: intro;
     padding: 5px;
-    margin: 0 10px;
+    /* margin: 0 10px; */
     color: rgb(0, 0, 0);
     overflow-wrap: break-word;
     justify-content: space-around;
@@ -242,7 +242,7 @@ input {
     display: none;
 }
 
-@media screen and (max-device-width: 750px) {
+@media screen and (max-device-width:750px) {
     #media-check {
         display: block;
     }
@@ -250,11 +250,20 @@ input {
         justify-content: flex-start;
     }
     .container {
-        margin-top: 20px;
+        margin-top: 55px;
+        padding: 5px;
     }
     .canvas-container {
         grid-template-areas: "image image" "chart chart" "intro intro";
         justify-content: center;
+    }
+    .box {
+        margin: 0 5px;
+        padding: 5px;
+    }
+    .canvas {
+        min-width: auto;
+        min-height: auto;
     }
     .image-note {
         display: none;
@@ -269,6 +278,10 @@ input {
         height: 25px;
         margin: 5px;
     }
+    #output p {
+        margin: 0px;
+        font-size: 0;
+    }
     #intro .flex-column {
         flex-direction: row;
     }
@@ -281,8 +294,9 @@ input {
     }
     #intro li,
     #intro b {
-        padding: 2px;
+        padding: 2px 0;
         font-size: 10px;
+        line-height: 10px;
     }
     #hex,
     #rgb {

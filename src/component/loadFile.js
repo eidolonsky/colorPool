@@ -14,17 +14,20 @@ const fileOnload = (e) => {
                     cLength,
                     scale = 5,
                     img = e.currentTarget,
-                    cPoint = {};
+                    cPoint = {},
+                    cwidth,
+                    cheight;
 
                 if ($("#media-check").is(':visible')) {
-                    // scale = 1;
                     cLength = Math.floor($(window).width() / 50) * 40;
+                    cwidth = cLength > $(window).width() * 0.7 ? $(window).width() * 0.7 : cLength;
+                    cheight = cLength > $(window).width() * 0.7 ? $(window).width() * 0.7 : cLength;
                 } else {
-                    // scale = 5;
                     cLength = Math.floor($(window).height() / 200) * 100;
+                    cwidth = cLength > $(window).width() * 0.45 ? $(window).width() * 0.45 : cLength;
+                    cheight = cLength > $(window).width() * 0.45 ? $(window).width() * 0.45 : cLength;
                 }
-                let cwidth = cLength > 550 ? 550 : cLength,
-                    cheight = cLength > 550 ? 550 : cLength;
+
                 console.log(cLength)
 
                 if (img.naturalWidth / img.naturalHeight >= 1) {
