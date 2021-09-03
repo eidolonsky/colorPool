@@ -18,8 +18,6 @@ let camera,
     loop,
     chartAngle;
 
-
-
 class Chart {
     constructor(container, data) {
         camera = createCamera();

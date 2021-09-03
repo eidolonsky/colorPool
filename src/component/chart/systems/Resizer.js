@@ -1,8 +1,14 @@
 class Resizer {
     constructor(container, camera, renderer) {
         // Set the camera's aspect ratio
-        let h = $("#image").height(),
+        let h, w;
+        if ($("#media-check").is(':visible')) {
+            w = $("#image").width();
+            h = w;
+        } else {
+            h = $("#image").height();
             w = h;
+        }
 
         camera.aspect = w / h;
 

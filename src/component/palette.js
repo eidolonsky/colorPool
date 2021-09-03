@@ -11,7 +11,7 @@ const genPalette = (c) => {
             $("#palette").append(
                     `<div class="palette-box flex" style="background-color: #${hex};"><p>#${hex}</p></div>`
                 )
-                .css("width", $("#canvas").width());
+                .css("width", $("#canvas").width() > $("#image").width() ? $("#canvas").width() : $("#image").width());
         }
     }
     $(".palette-box p").click((e) => {
