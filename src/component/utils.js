@@ -20,17 +20,11 @@ const styleRestore = () => {
 }
 
 const copyColor = (d) => {
-    let $temp = $("<textarea>");
-    $("body").append($temp);
-
     let t = $(d).text()
-
     let reg = /\w{3}:\s/g;
     let tReg = t.replace(reg, "").replace("#", "");
 
-    $temp.val(tReg).select()
-    document.execCommand("copy");
-    $temp.remove();
+    navigator.clipboard.writeText(tReg)
 }
 
 const genChart = (d) => {
