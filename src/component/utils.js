@@ -26,7 +26,7 @@ const copyColor = (d) => {
     let t = $(d).text()
 
     let reg = /\w{3}:\s/g;
-    let tReg = t.replace(reg, "");
+    let tReg = t.replace(reg, "").replace("#", "");
 
     $temp.val(tReg).select()
     document.execCommand("copy");
